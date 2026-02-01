@@ -13,19 +13,11 @@ Reusable [Agent Skills](https://agentskills.io) for Claude Code and other AI cod
 
 ## Installation
 
-### Install all skills (Claude Code)
+### Claude Code (plugin marketplace)
 
-Add the full collection to your project's `.claude/settings.json`:
-
-```json
-{
-  "skills": [
-    "https://github.com/sbrudz/agent-skills/tree/main/skills/bootstrapping-vm",
-    "https://github.com/sbrudz/agent-skills/tree/main/skills/installing-superpowers",
-    "https://github.com/sbrudz/agent-skills/tree/main/skills/configuring-github-credentials",
-    "https://github.com/sbrudz/agent-skills/tree/main/skills/project-quality-setup"
-  ]
-}
+```
+/plugin marketplace add sbrudz/agent-skills
+/plugin install agent-skills@sbrudz-skills
 ```
 
 ### Install a single skill

@@ -1,0 +1,26 @@
+{
+  "name": "sbrudz-skills",
+  "owner": {
+    "name": "sbrudz"
+  },
+  "metadata": {
+    "description": "Reusable agent skills for Claude Code and other AI coding assistants.",
+    "version": "1.0.0",
+    "pluginRoot": "."
+  },
+  "plugins": [
+    {
+      "name": "agent-skills",
+      "source": "./",
+      "description": "VM bootstrapping, GitHub credential setup, and project quality configuration skills.",
+      "version": "1.0.0",
+      "author": {
+        "name": "sbrudz"
+      },
+      "repository": "https://github.com/sbrudz/agent-skills",
+      "license": "MIT",
+      "category": "development",
+      "tags": ["bootstrapping", "github", "ssh", "linting", "ci"]
+    }
+  ]
+}
