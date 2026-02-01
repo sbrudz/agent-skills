@@ -1,10 +1,10 @@
 ---
 name: configuring-github-credentials
-description: Configures a Linux VM with git, GitHub CLI authentication, and SSH keys for GitHub access. Installs packages using the distro's native package manager, authenticates to GitHub, generates and uploads an SSH key, and configures git. Triggers when setting up a new VM for development, when git or GitHub access is needed, or when the user asks to configure GitHub credentials.
+description: Use when setting up a new Linux VM for development, when git or gh commands fail with authentication errors, when SSH to github.com is not configured, or when the user asks to configure GitHub access.
 compatibility: Requires a Linux VM with root access and internet connectivity.
 metadata:
   author: sbrudz
-  version: "1.0"
+  version: "1.1"
 ---
 
 # Configuring GitHub Credentials

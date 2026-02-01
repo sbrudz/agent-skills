@@ -1,10 +1,10 @@
 ---
 name: bootstrapping-vm
-description: Bootstraps a Linux VM for development with Claude Code by installing the superpowers plugin collection and configuring GitHub credentials. Triggers at the start of a new VM session, when the user says bootstrap or set up this VM, or when development tools and GitHub access are not yet configured.
+description: Use when starting a new VM session, when the user says bootstrap or set up this VM, or when both the superpowers plugin and GitHub access are missing.
 compatibility: Requires a Linux VM with root access, internet connectivity, and Claude Code CLI.
 metadata:
   author: sbrudz
-  version: "1.0"
+  version: "1.1"
 ---
 
 # Bootstrapping a VM

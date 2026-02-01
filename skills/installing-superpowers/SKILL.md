@@ -1,10 +1,10 @@
 ---
 name: installing-superpowers
-description: Checks if the obra/superpowers plugin collection is installed in Claude Code and installs it if missing. Triggers at the start of a new session, when the user asks to install superpowers, or when another skill depends on superpowers being available.
+description: Use when starting a new Claude Code session, when the user mentions superpowers or obra, or when another skill depends on the superpowers plugin collection being available.
 compatibility: Requires Claude Code CLI with plugin support.
 metadata:
   author: sbrudz
-  version: "1.0"
+  version: "1.1"
 ---
 
 # Installing Superpowers
