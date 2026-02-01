@@ -4,7 +4,7 @@ description: Use when starting a new VM session, when the user says bootstrap or
 compatibility: Requires a Linux VM with root access, internet connectivity, and Claude Code CLI.
 metadata:
   author: sbrudz
-  version: "1.2"
+  version: "1.3"
 ---
 
 # Bootstrapping a VM
@@ -20,22 +20,16 @@ Copy and track progress:
 
 ```
 - [ ] Install superpowers
-- [ ] Restart Claude Code (if superpowers was newly installed)
 - [ ] Configure GitHub credentials
 - [ ] Confirm VM is ready for development
+- [ ] Prompt user to restart Claude Code (if superpowers was newly installed)
 ```
 
 ## Step 1: Install superpowers
 
 Follow the [installing-superpowers](../installing-superpowers/SKILL.md) skill.
 
-If superpowers was already installed, proceed to Step 2.
-
-If superpowers was newly installed, it requires a restart to take effect. Tell the user:
-
-> Superpowers has been installed. Please restart Claude Code, then continue bootstrapping by saying "continue setting up this VM" or similar. The next step is configuring GitHub credentials.
-
-**Stop here and wait for the user to restart.** Do not proceed to Step 2 in the current session if superpowers was just installed — the plugin will not be active yet.
+Note whether superpowers was newly installed or already present. Continue to Step 2 either way — GitHub credential setup does not depend on superpowers.
 
 ## Step 2: Configure GitHub credentials
 
@@ -54,4 +48,10 @@ echo "=== SSH ===" && ssh -T git@github.com 2>&1 | head -1
 echo "=== Git config ===" && git config --global user.name && git config --global user.email
 ```
 
-If all checks pass, the VM is ready. Report the status to the user.
+If all checks pass, report the status to the user.
+
+If superpowers was newly installed in Step 1, tell the user:
+
+> All setup is complete. Please restart Claude Code so the superpowers plugin takes effect. After restarting, superpowers skills will be available.
+
+If superpowers was already installed, no restart is needed.

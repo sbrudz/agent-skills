@@ -4,7 +4,7 @@ description: Use when starting a new Claude Code session, when the user mentions
 compatibility: Requires Claude Code CLI with plugin support.
 metadata:
   author: sbrudz
-  version: "1.2"
+  version: "1.3"
 ---
 
 # Installing Superpowers
@@ -19,7 +19,7 @@ Copy and track progress:
 - [ ] Check if superpowers is already installed
 - [ ] Install superpowers if missing
 - [ ] Verify installation succeeded
-- [ ] Prompt user to restart Claude Code (if newly installed)
+- [ ] Notify user that a restart is needed (if newly installed)
 ```
 
 ## Step 1: Check if superpowers is installed
@@ -56,10 +56,10 @@ test -d ~/.claude/plugins/cache/superpowers-marketplace && echo "SUCCESS" || ech
 
 If `FAILED`, report the error to the user. Otherwise, installation is complete.
 
-## Step 4: Restart Claude Code
+## Step 4: Restart notice
 
-The superpowers plugin will not be active until Claude Code is restarted. Tell the user:
+If superpowers was newly installed, inform the user that a Claude Code restart is needed for the plugin to take effect. However, **do not stop the current session** — other tasks that don't depend on superpowers skills (e.g., configuring GitHub credentials) can continue in this session.
 
-> Superpowers has been installed. Please restart Claude Code for the plugin to take effect. After restarting, you can continue with the next step (e.g., configuring GitHub credentials).
+If this skill was invoked as part of bootstrapping-vm, continue with the remaining bootstrap steps. The restart happens at the end after all setup is complete.
 
-**Do not continue with tasks that depend on superpowers skills being available.** The current session will not have access to them.
+Superpowers skills will only be available after the restart.
