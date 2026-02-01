@@ -4,7 +4,7 @@ description: Use when setting up a new Linux VM for development, when git or gh 
 compatibility: Requires a Linux VM with root access and internet connectivity.
 metadata:
   author: sbrudz
-  version: "1.1"
+  version: "1.2"
 ---
 
 # Configuring GitHub Credentials
@@ -55,11 +55,14 @@ Ask the user which GitHub account to use. Recommend using an account with limite
 
 **Primary method — Device flow (OAuth):**
 
+**Important:** This command must be run as a background task so the output streams properly. Running it inline with `2>&1` will not display the URL and code.
+
 ```bash
+# Run in background — do NOT run inline
 gh auth login --hostname github.com --git-protocol ssh --web
 ```
 
-This outputs a one-time code and a URL. Present both to the user clearly:
+Use `run_in_background: true` when calling the Bash tool. Then read the output to find the one-time code and URL. Present both to the user clearly:
 
 > Open this URL in any browser: https://github.com/login/device
 > Enter this code: XXXX-XXXX
