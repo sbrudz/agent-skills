@@ -1,21 +1,21 @@
 ---
 name: project-quality-setup
-description: Configures ESLint, Prettier, Husky with lint-staged, and GitHub Actions CI for Node.js projects. Detects the tech stack (Expo, Next.js, React, Node) and adapts accordingly. Triggers after project scaffolding, before implementation begins, or when a project lacks linting/formatting configuration.
-compatibility: Designed for Claude Code (or similar products). Requires Node.js.
+description: Configures linting, formatting, pre-commit hooks, and CI for a project before implementation begins. Detects the tech stack and applies the appropriate tools. Triggers after scaffolding a new project, when a project lacks quality tooling, or when the user asks to set up linting, formatting, CI, or code quality.
+compatibility: Designed for Claude Code (or similar products).
 metadata:
   author: sbrudz
-  version: "2.0"
+  version: "3.0"
 ---
 
 # Project Quality Setup
 
-Configure linting, formatting, git hooks, and CI **before** writing implementation code.
+Establishes linting, formatting, pre-commit hooks, and CI **before** writing implementation code.
 
 ## When to trigger
 
 - After scaffolding a new project
-- Before starting implementation on a project without lint/format config
-- When the user asks to set up code quality tooling
+- Before starting implementation on a project without quality tooling
+- When the user asks to set up linting, formatting, or CI
 
 ## Progress checklist
 
@@ -23,99 +23,53 @@ Copy and track progress:
 
 ```
 - [ ] Detect tech stack
-- [ ] ESLint: install, configure, fix issues
-- [ ] Prettier: install, configure, format files
-- [ ] Husky + lint-staged: install, configure hooks
-- [ ] GitHub Actions CI: create workflow
+- [ ] Linter: install, configure, fix existing issues
+- [ ] Formatter: install, configure, format all files
+- [ ] Pre-commit hook: run linter + formatter on staged files
+- [ ] CI workflow: lint, format check, type check (if applicable), tests
 - [ ] Verify all checks pass
 ```
 
 ## Step 1: Detect the tech stack
 
-Read `package.json` and project config files. Determine:
+Examine the project root for language and framework indicators (`package.json`, `go.mod`, `Gemfile`, `Cargo.toml`, etc.). Then read the matching reference file for stack-specific tools and configuration:
 
-- **Framework**: Expo/React Native, Next.js, React, Node.js
-- **Language**: TypeScript or JavaScript
-- **Test runner**: Jest, Vitest, or other
-- **Package manager**: npm, yarn, or pnpm
+| Stack | Reference |
+|-------|-----------|
+| Node.js / TypeScript (Expo, Next.js, React, etc.) | [references/nodejs.md](references/nodejs.md) |
+| Go | [references/golang.md](references/golang.md) |
+| Ruby / Rails | [references/ruby.md](references/ruby.md) |
+| Rust | [references/rust.md](references/rust.md) |
 
-**If TypeScript is detected**, read [references/typescript.md](references/typescript.md) for additional steps that apply throughout this workflow.
+**Follow the reference file for all remaining steps.** The steps below describe the goals each reference file implements.
 
-## Step 2: ESLint
+## Step 2: Linter
 
-Install ESLint 9 with the appropriate framework config and `eslint-config-prettier`:
+Install and configure the ecosystem's standard linter. Add a `lint` command that can be run locally and in CI. Run the auto-fixer, then manually resolve remaining issues.
 
-| Stack | Config package |
-|-------|---------------|
-| Expo/React Native | `eslint-config-expo` |
-| Next.js | `eslint-config-next` |
-| React (Vite/CRA) | `@eslint/js` + `eslint-plugin-react` + `eslint-plugin-react-hooks` |
-| Node.js | `@eslint/js` |
+## Step 3: Formatter
 
-If Jest is the test runner, also add `eslint-plugin-jest`.
+Install and configure the ecosystem's standard formatter. Add a `format` command and a `format:check` command (for CI). Run the formatter on all existing source files.
 
-Create `eslint.config.js` using flat config format. Spread the framework config, add `eslint-config-prettier` last, and add an `ignores` entry for `node_modules/`, `dist/`, `coverage/`, and config files.
+## Step 4: Pre-commit hook
 
-Add scripts: `"lint": "eslint ."` and `"lint:fix": "eslint . --fix"`.
+Configure a pre-commit hook that runs the linter and formatter on staged files. This prevents unformatted or failing code from being committed.
 
-Run `lint:fix`, then manually resolve remaining errors. Common fixes:
-- Remove unused variables or prefix with `_`
-- Escape special characters in JSX (`&apos;`, `&quot;`)
-- Restructure conditional `expect` calls in tests to be unconditional
+## Step 5: CI workflow
 
-## Step 3: Prettier
+Create a GitHub Actions workflow (`.github/workflows/ci.yml`) triggered on push to `main` and on pull requests. The workflow should:
 
-Install `prettier`. Create `.prettierrc` by inferring style from existing code (quote style, trailing commas, semicolons, line width, indentation). Create `.prettierignore` for build artifacts and lockfiles.
-
-Add scripts: `"format": "prettier --write ..."` and `"format:check": "prettier --check ..."` with glob patterns matching the project's source directories.
-
-Run `format` to apply consistent formatting to all source files.
-
-## Step 4: Husky + lint-staged
-
-```
-npm install --save-dev husky lint-staged
-npx husky init
-```
-
-Replace `.husky/pre-commit` contents with `npx lint-staged`.
-
-Create `.lintstagedrc.json` mapping source file extensions to `eslint --fix` + `prettier --write`, and config/doc files to `prettier --write` only. Match the file extensions to the project's language (`.js`/`.jsx` for JavaScript, `.ts`/`.tsx` for TypeScript, or both).
-
-## Step 5: GitHub Actions CI
-
-Create `.github/workflows/ci.yml`:
-
-```yaml
-name: CI
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-
-jobs:
-  quality:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: npm
-      - run: npm ci
-      - run: npm run lint
-      - run: npm run format:check
-      - run: npm test
-```
-
-Adapt: use `yarn`/`pnpm` if that's the project's package manager. Add `npx tsc --noEmit` for TypeScript projects. Adjust the test command to match the project's runner.
+1. Install dependencies
+2. Run the linter
+3. Run the format check
+4. Run type checking (if the language has a separate type checker)
+5. Run the test suite
 
 ## Step 6: Verify
 
-Run each and confirm exit code 0:
+Confirm all checks pass locally:
 
-1. `npm run lint`
-2. `npm run format:check`
+1. Lint command exits 0
+2. Format check exits 0
 3. Test suite passes
-4. Make a test commit to confirm the pre-commit hook runs lint-staged
+4. A test commit triggers the pre-commit hook
