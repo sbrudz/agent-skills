@@ -1,20 +1,31 @@
 ---
 name: project-quality-setup
-description: Configures linting, formatting, pre-commit hooks, and CI for a project before implementation begins. Detects the tech stack and applies the appropriate tools. Triggers after scaffolding a new project, when a project lacks quality tooling, or when the user asks to set up linting, formatting, CI, or code quality.
+description: Use when a project lacks linting, formatting, pre-commit hooks, or CI. Must be completed before executing any implementation plan (superpowers:executing-plans, superpowers:subagent-driven-development). Also triggers after scaffolding a new project or when the user asks to set up code quality tooling.
 compatibility: Designed for Claude Code (or similar products).
 metadata:
   author: sbrudz
-  version: "3.0"
+  version: "3.1"
 ---
 
 # Project Quality Setup
 
 Establishes linting, formatting, pre-commit hooks, and CI **before** writing implementation code.
 
+## Ordering requirement
+
+**This skill must complete before any implementation plan is executed.** If you are about to use superpowers:executing-plans or superpowers:subagent-driven-development, first check whether the project has:
+
+- A linter configured and passing
+- A formatter configured and passing
+- A pre-commit hook
+- A CI workflow
+
+If any are missing, complete this skill first. Do not start implementing features on a project without quality gates.
+
 ## When to trigger
 
+- Before executing an implementation plan on a project without quality tooling
 - After scaffolding a new project
-- Before starting implementation on a project without quality tooling
 - When the user asks to set up linting, formatting, or CI
 
 ## Progress checklist
