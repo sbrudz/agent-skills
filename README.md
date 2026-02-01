@@ -6,7 +6,7 @@ Reusable [Agent Skills](https://agentskills.io) for Claude Code and other AI cod
 
 | Skill | Description |
 |-------|-------------|
-| [project-quality-setup](skills/project-quality-setup/SKILL.md) | Set up linting, formatting, git hooks, and CI before starting implementation |
+| [project-quality-setup](skills/project-quality-setup/SKILL.md) | Configures ESLint, Prettier, Husky + lint-staged, and GitHub Actions CI for Node.js projects |
 
 ## Installation
 
