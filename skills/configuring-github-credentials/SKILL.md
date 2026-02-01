@@ -59,8 +59,10 @@ Ask the user which GitHub account to use. Recommend using an account with limite
 
 ```bash
 # Run in background — do NOT run inline
-gh auth login --hostname github.com --git-protocol ssh --web
+gh auth login --hostname github.com --git-protocol ssh --web --scopes admin:public_key
 ```
+
+The `--scopes admin:public_key` flag is required so that Step 7 (`gh ssh-key add`) has permission to upload SSH keys. Without it, the default OAuth scopes will not include this and you will need to re-authenticate.
 
 Use `run_in_background: true` when calling the Bash tool. Then read the output to find the one-time code and URL. Present both to the user clearly:
 
