@@ -4,7 +4,7 @@ description: Use when a project lacks linting, formatting, pre-commit hooks, or 
 compatibility: Designed for Claude Code (or similar products).
 metadata:
   author: sbrudz
-  version: "3.1"
+  version: "3.2"
 ---
 
 # Project Quality Setup
@@ -13,19 +13,32 @@ Establishes linting, formatting, pre-commit hooks, and CI **before** writing imp
 
 ## Ordering requirement
 
-**This skill must complete before any implementation plan is executed.** If you are about to use superpowers:executing-plans or superpowers:subagent-driven-development, first check whether the project has:
+**This skill must complete before any feature implementation.** If you are about to use superpowers:executing-plans or superpowers:subagent-driven-development, first check whether the project has:
 
 - A linter configured and passing
 - A formatter configured and passing
 - A pre-commit hook
 - A CI workflow
 
-If any are missing, complete this skill first. Do not start implementing features on a project without quality gates.
+If any are missing, complete this skill first. Do not implement features on a project without quality gates.
+
+### No tech stack yet?
+
+If the project directory has no tech stack indicators (`package.json`, `go.mod`, `Gemfile`, `Cargo.toml`, etc.), the plan likely includes a scaffolding task (e.g., `npx create-next-app`, `rails new`, `cargo init`).
+
+In this case:
+
+1. Execute **only** the scaffolding task from the plan
+2. Stop before executing any feature tasks
+3. Run this skill to set up quality tooling on the newly scaffolded project
+4. Resume the remaining plan tasks
+
+Do not skip quality setup because the tech stack doesn't exist yet. Defer it until after scaffolding, then complete it before feature work begins.
 
 ## When to trigger
 
-- Before executing an implementation plan on a project without quality tooling
-- After scaffolding a new project
+- Before executing feature tasks in an implementation plan
+- Immediately after scaffolding a new project (before any feature work)
 - When the user asks to set up linting, formatting, or CI
 
 ## Progress checklist
