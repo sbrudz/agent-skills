@@ -37,6 +37,6 @@ Include a UX rationale section: who the user is, what their goal is, and which p
 
 ## What This Skill Does NOT Cover
 
-- Visual design (spacing, color, hierarchy) — future `ux-visual-evaluation` skill
+- Visual design (spacing, color, hierarchy) — `ux-visual-evaluation`
 - Accessibility implementation — `react-best-practices`
-- Prototyping workflow — future `ux-prototyping` skill
+- Prototyping workflow — `ux-prototyping`
