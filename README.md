@@ -10,6 +10,9 @@ Reusable [Agent Skills](https://agentskills.io) for Claude Code and other AI cod
 | [installing-superpowers](skills/installing-superpowers/SKILL.md) | Checks if the obra/superpowers plugin collection is installed in Claude Code and installs it if missing. |
 | [configuring-github-credentials](skills/configuring-github-credentials/SKILL.md) | Configures a Linux VM with git, GitHub CLI, SSH keys, and GitHub authentication. Distro-aware package installation. |
 | [project-quality-setup](skills/project-quality-setup/SKILL.md) | Configures linting, formatting, pre-commit hooks, and CI before implementation begins. Detects the tech stack (Node.js/TypeScript, Go, Ruby, Rust) and applies the appropriate tools. |
+| [react-best-practices](skills/react-best-practices/SKILL.md) | Code review checklist for React: component responsibility splitting, useEffect misuse, React 19 patterns (Suspense, useActionState, React Compiler), behavioral accessibility, and testing practices. Covers judgment calls linters cannot catch. |
+| [functional-core-imperative-shell](skills/functional-core-imperative-shell/SKILL.md) | Code review checklist for separating business logic from side effects. Detects impure business logic, fat shells, and hidden side effects (logging, Date.now, mutable state in ostensibly pure functions). Language-agnostic. |
+| [architecture-decision-records](skills/architecture-decision-records/SKILL.md) | Captures significant architectural decisions during planning using Michael Nygard's ADR template. Two-subagent workflow: proposer drafts the ADR, reviewer checks quality. Includes threshold gate to prevent ADR bloat. |
 
 ## Installation
 

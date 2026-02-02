@@ -34,9 +34,15 @@ Bump the version string in **all three** locations — they must stay in sync:
 2. `.claude-plugin/marketplace.json` → `metadata.version`
 3. `.claude-plugin/marketplace.json` → `plugins[0].version`
 
+### Pre-release checklist
+
+Before bumping versions, ensure:
+
+1. **README.md is up to date.** If skills were added, removed, or significantly changed, update the README to reflect the current skill inventory and descriptions.
+
 ### Release workflow
 
-After bumping versions:
+After the pre-release checklist passes, bump versions, then:
 
 1. Commit the version bump: `git commit -m "chore: bump version to X.Y.Z"`
 2. Create a git tag: `git tag vX.Y.Z`
