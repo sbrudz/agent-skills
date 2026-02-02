@@ -18,6 +18,7 @@ Reusable [Agent Skills](https://agentskills.io) for Claude Code and other AI cod
 | [ux-design-principles](skills/ux-design-principles/SKILL.md) | User-centered design companion to brainstorming for UI features. Applies Goal-Directed Design (Cooper) and usability principles (Krug) — user goals, context, expectations, progressive disclosure, scanning priority. |
 | [ux-visual-evaluation](skills/ux-visual-evaluation/SKILL.md) | Second-pass visual evaluation companion to visual-feedback-loop. Evaluates screenshots for design quality: visual hierarchy, whitespace, spacing consistency, color usage, affordances, system status, and consistency. Draws from Refactoring UI and Nielsen's heuristics. |
 | [ux-prototyping](skills/ux-prototyping/SKILL.md) | Throwaway HTML prototyping after brainstorming, before implementation. Threshold gate triggers for novel interactions, complex flows, or visual-balance-critical layouts. Screenshot-based iteration with user, saves accepted prototype screenshots, deletes throwaway code. |
+| [domain-driven-design](skills/domain-driven-design/SKILL.md) | Strategic DDD patterns for planning and code review. Ubiquitous language (naming after domain concepts), bounded contexts (module boundaries), and context mapping (how modules relate). Includes code review checklists for naming violations and cross-boundary coupling. |
 
 ## Installation
 
