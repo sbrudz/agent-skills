@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "Reusable agent skills for Claude Code and other AI coding assistants.",
-    "version": "1.3.0",
+    "version": "1.4.0",
     "pluginRoot": "."
   },
   "plugins": [
@@ -13,7 +13,7 @@
       "name": "agent-skills",
       "source": "./",
       "description": "VM bootstrapping, GitHub credential setup, and project quality configuration skills.",
-      "version": "1.3.0",
+      "version": "1.4.0",
       "author": {
         "name": "sbrudz"
       },
