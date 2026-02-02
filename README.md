@@ -14,6 +14,7 @@ Reusable [Agent Skills](https://agentskills.io) for Claude Code and other AI cod
 | [functional-core-imperative-shell](skills/functional-core-imperative-shell/SKILL.md) | Code review checklist for separating business logic from side effects. Detects impure business logic, fat shells, and hidden side effects (logging, Date.now, mutable state in ostensibly pure functions). Language-agnostic. |
 | [architecture-decision-records](skills/architecture-decision-records/SKILL.md) | Captures significant architectural decisions during planning using Michael Nygard's ADR template. Two-subagent workflow: proposer drafts the ADR, reviewer checks quality. Includes threshold gate to prevent ADR bloat. |
 | [boy-scout-rule](skills/boy-scout-rule/SKILL.md) | Concrete refactoring checklist for the TDD REFACTOR phase and code quality review. Covers structural clarity (extract function, reduce nesting, simplify conditionals), structural design (consolidate duplication, right-size functions), and cross-cutting patterns. References functional-core-imperative-shell and react-best-practices as companion checks. |
+| [visual-feedback-loop](skills/visual-feedback-loop/SKILL.md) | Visual feedback loop for the TDD GREEN phase. Screenshots the running application to verify UI correctness (layout, spacing, text, completeness) before refactoring. Tool-agnostic with Vibium recommended. Scoped to UI-affecting tasks only. |
 
 ## Installation
 
