@@ -47,7 +47,22 @@ After the pre-release checklist passes, bump versions, then:
 1. Commit the version bump: `git commit -m "chore: bump version to X.Y.Z"`
 2. Create a git tag: `git tag vX.Y.Z`
 3. Push the commit and tag: `git push && git push --tags`
-4. Create a GitHub release: `gh release create vX.Y.Z --generate-notes`
+4. Create a GitHub release with descriptive notes:
+
+```bash
+gh release create vX.Y.Z --notes "$(cat <<'EOF'
+## New Skill / Changes
+
+- **skill-name** — One-sentence description of what the skill does and its key features.
+
+Any additional context (e.g., companion skill updates, CLAUDE.md changes).
+
+**Full Changelog**: https://github.com/sbrudz/agent-skills/compare/vPREVIOUS...vX.Y.Z
+EOF
+)"
+```
+
+Do NOT use `--generate-notes` — it produces empty output when commits go directly to main without PRs. Always write release notes that describe what was added or changed in user-facing terms.
 
 ### What NOT to version
 
