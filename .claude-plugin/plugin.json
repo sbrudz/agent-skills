@@ -1,5 +1,5 @@
 {
   "name": "agent-skills",
   "description": "Reusable agent skills for VM bootstrapping, GitHub credential setup, and project quality configuration.",
-  "version": "1.8.0"
+  "version": "1.9.0"
 }
