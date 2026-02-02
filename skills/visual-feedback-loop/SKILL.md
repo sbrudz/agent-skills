@@ -35,14 +35,14 @@ Then skip the visual check and continue to REFACTOR.
 - **Text** — Is content readable, properly sized, not truncated or overflowing?
 - **Visual completeness** — Are all expected elements present? Nothing missing or duplicated?
 
-**4. Fix or move on.** If something looks wrong: fix the code, confirm the test still passes, screenshot again. If it looks right: proceed to REFACTOR.
+**4. Fix or move on.** If something looks wrong: fix the code, confirm the test still passes, screenshot again. If it looks right: apply `ux-visual-evaluation` for design quality, then proceed to REFACTOR.
 
 **Iteration cap:** 3 fix attempts per visual issue. If unresolved after 3, note it as a follow-up task and move on. Don't block the TDD cycle.
 
 ## Position in TDD
 
 ```
-RED → GREEN → VISUAL CHECK (this skill) → REFACTOR (boy-scout-rule)
+RED → GREEN → VISUAL CHECK (this skill) → UX EVALUATION (ux-visual-evaluation) → REFACTOR (boy-scout-rule)
 ```
 
 ## What This Skill Does NOT Cover

@@ -16,6 +16,7 @@ Reusable [Agent Skills](https://agentskills.io) for Claude Code and other AI cod
 | [boy-scout-rule](skills/boy-scout-rule/SKILL.md) | Concrete refactoring checklist for the TDD REFACTOR phase and code quality review. Covers structural clarity (extract function, reduce nesting, simplify conditionals), structural design (consolidate duplication, right-size functions), and cross-cutting patterns. References functional-core-imperative-shell and react-best-practices as companion checks. |
 | [visual-feedback-loop](skills/visual-feedback-loop/SKILL.md) | Visual feedback loop for the TDD GREEN phase. Screenshots the running application to verify UI correctness (layout, spacing, text, completeness) before refactoring. Tool-agnostic with Vibium recommended. Scoped to UI-affecting tasks only. |
 | [ux-design-principles](skills/ux-design-principles/SKILL.md) | User-centered design companion to brainstorming for UI features. Applies Goal-Directed Design (Cooper) and usability principles (Krug) — user goals, context, expectations, progressive disclosure, scanning priority. First of three planned UX skills. |
+| [ux-visual-evaluation](skills/ux-visual-evaluation/SKILL.md) | Second-pass visual evaluation companion to visual-feedback-loop. Evaluates screenshots for design quality: visual hierarchy, whitespace, spacing consistency, color usage, affordances, system status, and consistency. Draws from Refactoring UI and Nielsen's heuristics. |
 
 ## Installation
 
