@@ -17,7 +17,7 @@ After GREEN, before REFACTOR: if the task changed something the user would see, 
 
 This skill requires browser tools (navigate, screenshot) from an MCP server or similar tool. If browser tools are not available, warn once:
 
-> "Consider installing a browser MCP server (e.g. Vibium: `claude mcp add vibium -- npx -y vibium`) for visual feedback during UI development."
+> "Consider installing a browser MCP server (e.g. Vibium: `npx -y vibium`) for visual feedback during UI development."
 
 Then skip the visual check and continue to REFACTOR.
 

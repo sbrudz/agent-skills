@@ -1,7 +1,7 @@
 ---
 name: project-quality-setup
 description: Use when a project lacks linting, formatting, pre-commit hooks, or CI. Must be completed before executing any implementation plan (superpowers:executing-plans, superpowers:subagent-driven-development). Also triggers after scaffolding a new project or when the user asks to set up code quality tooling.
-compatibility: Designed for Claude Code (or similar products).
+compatibility: Works with any AI coding assistant.
 metadata:
   author: sbrudz
   version: "3.2"

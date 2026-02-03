@@ -1,7 +1,7 @@
 ---
 name: installing-superpowers
 description: Use when starting a new Claude Code session, when the user mentions superpowers or obra, or when another skill depends on the superpowers plugin collection being available.
-compatibility: Requires Claude Code CLI with plugin support.
+compatibility: Requires Claude Code CLI with plugin support. This skill is Claude Code-specific.
 metadata:
   author: sbrudz
   version: "1.3"
@@ -9,7 +9,7 @@ metadata:
 
 # Installing Superpowers
 
-Ensures the [obra/superpowers](https://github.com/obra/superpowers) plugin collection is installed in Claude Code.
+Ensures the [obra/superpowers](https://github.com/obra/superpowers) plugin collection is installed.
 
 ## Progress checklist
 
@@ -58,7 +58,7 @@ If `FAILED`, report the error to the user. Otherwise, installation is complete.
 
 ## Step 4: Restart notice
 
-If superpowers was newly installed, inform the user that a Claude Code restart is needed for the plugin to take effect. However, **do not stop the current session** — other tasks that don't depend on superpowers skills (e.g., configuring GitHub credentials) can continue in this session.
+If superpowers was newly installed, inform the user that a restart of their AI coding assistant is needed for the plugin to take effect. However, **do not stop the current session** — other tasks that don't depend on superpowers skills (e.g., configuring GitHub credentials) can continue in this session.
 
 If this skill was invoked as part of bootstrapping-vm, continue with the remaining bootstrap steps. The restart happens at the end after all setup is complete.
 

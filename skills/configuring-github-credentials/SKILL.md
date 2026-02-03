@@ -96,7 +96,7 @@ Confirm the output shows the expected username and authentication method. If it 
 Generate an ed25519 key specifically for GitHub:
 
 ```bash
-ssh-keygen -t ed25519 -f ~/.ssh/github_ed25519 -N "" -C "claude-code-vm"
+ssh-keygen -t ed25519 -f ~/.ssh/github_ed25519 -N "" -C "ai-agent-vm"
 ```
 
 Set correct permissions:
@@ -132,7 +132,7 @@ If `~/.ssh/config` already has a `github.com` entry, ask the user before modifyi
 ## Step 7: Upload SSH public key to GitHub
 
 ```bash
-gh ssh-key add ~/.ssh/github_ed25519.pub --title "claude-code-vm-$(hostname)-$(date +%Y%m%d)"
+gh ssh-key add ~/.ssh/github_ed25519.pub --title "ai-agent-vm-$(hostname)-$(date +%Y%m%d)"
 ```
 
 The title includes the hostname and date for easy identification in GitHub settings.
@@ -183,4 +183,4 @@ Ask the user which repository to use for their work. Options:
    gh repo create <name> --private --clone
    ```
 
-All source code written by Claude should be committed to this repo and pushed to GitHub.
+All source code should be committed to this repo and pushed to GitHub.

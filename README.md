@@ -1,13 +1,13 @@
 # Agent Skills
 
-Reusable [Agent Skills](https://agentskills.io) for Claude Code and other AI coding assistants.
+Reusable [Agent Skills](https://agentskills.io) for AI coding assistants — compatible with Claude Code, Windsurf, Codex, and any tool that supports the [Agent Skills specification](https://agentskills.io/specification).
 
 ## Available skills
 
 | Skill | Description |
 |-------|-------------|
-| [bootstrapping-vm](skills/bootstrapping-vm/SKILL.md) | Bootstraps a Linux VM for development with Claude Code by installing superpowers and configuring GitHub credentials. |
-| [installing-superpowers](skills/installing-superpowers/SKILL.md) | Checks if the obra/superpowers plugin collection is installed in Claude Code and installs it if missing. |
+| [bootstrapping-vm](skills/bootstrapping-vm/SKILL.md) | Bootstraps a Linux VM for development by installing superpowers and configuring GitHub credentials. *(Claude Code only)* |
+| [installing-superpowers](skills/installing-superpowers/SKILL.md) | Checks if the obra/superpowers plugin collection is installed and installs it if missing. *(Claude Code only)* |
 | [configuring-github-credentials](skills/configuring-github-credentials/SKILL.md) | Configures a Linux VM with git, GitHub CLI, SSH keys, and GitHub authentication. Distro-aware package installation. |
 | [project-quality-setup](skills/project-quality-setup/SKILL.md) | Configures linting, formatting, pre-commit hooks, and CI before implementation begins. Detects the tech stack (Node.js/TypeScript, Go, Ruby, Rust) and applies the appropriate tools. |
 | [react-best-practices](skills/react-best-practices/SKILL.md) | Code review checklist for React: component responsibility splitting, useEffect misuse, React 19 patterns (Suspense, useActionState, React Compiler), behavioral accessibility, and testing practices. Covers judgment calls linters cannot catch. |
@@ -20,22 +20,98 @@ Reusable [Agent Skills](https://agentskills.io) for Claude Code and other AI cod
 | [ux-prototyping](skills/ux-prototyping/SKILL.md) | Throwaway HTML prototyping after brainstorming, before implementation. Threshold gate triggers for novel interactions, complex flows, or visual-balance-critical layouts. Screenshot-based iteration with user, saves accepted prototype screenshots, deletes throwaway code. |
 | [domain-driven-design](skills/domain-driven-design/SKILL.md) | Strategic DDD patterns for planning and code review. Ubiquitous language (naming after domain concepts), bounded contexts (module boundaries), and context mapping (how modules relate). Includes code review checklists for naming violations and cross-boundary coupling. |
 
+> Skills marked *(Claude Code only)* depend on the Claude Code plugin system and are not portable to other agents.
+
 ## Installation
 
-### Claude Code (plugin marketplace)
+### Claude Code
+
+#### Plugin marketplace (all skills)
 
 ```
 /plugin marketplace add sbrudz/agent-skills
 /plugin install agent-skills@sbrudz-skills
 ```
 
-### Install a single skill
+#### Single skill
 
-Use the `/install-skill` command in Claude Code and provide the GitHub URL to the skill directory, e.g.:
+Use the `/install-skill` command and provide the GitHub URL to the skill directory:
 
 ```
-/install-skill https://github.com/sbrudz/agent-skills/tree/main/skills/bootstrapping-vm
+/install-skill https://github.com/sbrudz/agent-skills/tree/main/skills/project-quality-setup
 ```
+
+### Windsurf
+
+Windsurf loads skills from `SKILL.md` files in specific directories. You can install skills at the workspace level (one project) or globally (all projects).
+
+#### Workspace skills (one project)
+
+From your project root:
+
+```bash
+git clone https://github.com/sbrudz/agent-skills.git /tmp/agent-skills
+mkdir -p .windsurf/skills
+cp -r /tmp/agent-skills/skills/* .windsurf/skills/
+rm -rf /tmp/agent-skills
+```
+
+#### Global skills (all projects)
+
+```bash
+git clone https://github.com/sbrudz/agent-skills.git /tmp/agent-skills
+mkdir -p ~/.codeium/windsurf/skills
+cp -r /tmp/agent-skills/skills/* ~/.codeium/windsurf/skills/
+rm -rf /tmp/agent-skills
+```
+
+#### Single skill
+
+To install just one skill (e.g., `project-quality-setup`):
+
+```bash
+mkdir -p .windsurf/skills/project-quality-setup
+curl -sL https://raw.githubusercontent.com/sbrudz/agent-skills/main/skills/project-quality-setup/SKILL.md \
+  -o .windsurf/skills/project-quality-setup/SKILL.md
+```
+
+Skills are available in Cascade via `@skill-name` mentions once installed.
+
+### Codex
+
+Codex loads skills from `SKILL.md` files in `.codex/skills/` (repo-level) or `~/.codex/skills/` (user-level).
+
+#### Repo-level skills (one project)
+
+From your project root:
+
+```bash
+git clone https://github.com/sbrudz/agent-skills.git /tmp/agent-skills
+mkdir -p .codex/skills
+cp -r /tmp/agent-skills/skills/* .codex/skills/
+rm -rf /tmp/agent-skills
+```
+
+#### User-level skills (all projects)
+
+```bash
+git clone https://github.com/sbrudz/agent-skills.git /tmp/agent-skills
+mkdir -p ~/.codex/skills
+cp -r /tmp/agent-skills/skills/* ~/.codex/skills/
+rm -rf /tmp/agent-skills
+```
+
+#### Single skill
+
+To install just one skill (e.g., `project-quality-setup`):
+
+```bash
+mkdir -p .codex/skills/project-quality-setup
+curl -sL https://raw.githubusercontent.com/sbrudz/agent-skills/main/skills/project-quality-setup/SKILL.md \
+  -o .codex/skills/project-quality-setup/SKILL.md
+```
+
+> **Note:** Some skills have supporting files in `references/` subdirectories. When installing single skills, check the skill's `SKILL.md` for references and copy those files too.
 
 ### Other agents
 
