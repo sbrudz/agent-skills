@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "Reusable agent skills for AI coding assistants (Claude Code, Windsurf, Codex, and others).",
-    "version": "1.9.0",
+    "version": "1.9.1",
     "pluginRoot": "."
   },
   "plugins": [
@@ -13,7 +13,7 @@
       "name": "agent-skills",
       "source": "./",
       "description": "VM bootstrapping, GitHub credential setup, and project quality configuration skills.",
-      "version": "1.9.0",
+      "version": "1.9.1",
       "author": {
         "name": "sbrudz"
       },
