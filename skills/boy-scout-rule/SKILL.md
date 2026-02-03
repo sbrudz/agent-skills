@@ -1,11 +1,11 @@
 ---
 name: boy-scout-rule
-description: Use during the REFACTOR phase of TDD red-green-refactor and during code quality review to identify and apply incremental refactoring improvements to touched code and its immediate neighbors
+description: Use after making tests pass to apply incremental refactoring improvements to touched code and its immediate neighbors, and during code review
 ---
 
 # Boy Scout Rule — Leave the Code Cleaner Than You Found It
 
-Concrete refactoring checklist for the TDD REFACTOR phase and code quality review. Replaces vague "clean up" guidance with specific patterns to look for.
+Concrete refactoring checklist for after tests pass and during code review. Replaces vague "clean up" guidance with specific patterns to look for.
 
 ## Scope
 
@@ -17,7 +17,7 @@ Concrete refactoring checklist for the TDD REFACTOR phase and code quality revie
 
 **The guardrail:** If a refactoring would show up as an unrelated change in a code review diff, it's out of scope.
 
-## TDD Refactor Checklist
+## Refactor Checklist
 
 Run through after tests go green. Check your code and its immediate neighbors.
 
@@ -36,7 +36,7 @@ Run through after tests go green. Check your code and its immediate neighbors.
 
 ## Code Review Refactor Checklist
 
-Apply during code quality review (`superpowers:code-reviewer`). The reviewer has the full diff and can spot cross-cutting patterns.
+Apply during code review. The reviewer has the full diff and can spot cross-cutting patterns.
 
 ### Cross-cutting patterns
 

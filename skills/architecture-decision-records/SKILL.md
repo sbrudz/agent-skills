@@ -1,15 +1,15 @@
 ---
 name: architecture-decision-records
-description: Use when making architectural decisions during planning or brainstorming sessions, when choosing between technologies, patterns, or system designs that affect multiple components or are hard to reverse
+description: Use when making architectural decisions during planning or design sessions, when choosing between technologies, patterns, or system designs that affect multiple components or are hard to reverse
 ---
 
 # Architecture Decision Records
 
-Capture significant architectural decisions as lightweight documents during planning. Uses Michael Nygard's ADR template with a two-subagent workflow (propose → review).
+Capture significant architectural decisions as lightweight documents during planning and design. Uses Michael Nygard's ADR template with a two-subagent workflow (propose → review).
 
 ## When to Use
 
-During `superpowers:brainstorming` or `superpowers:writing-plans`, when architectural decisions are being made. Create ADRs **after** the planning conversation concludes, before transitioning to implementation.
+During planning or design sessions, when architectural decisions are being made. Create ADRs **after** the planning conversation concludes, before transitioning to implementation.
 
 Do NOT interrupt the planning flow to write ADRs. Collect qualifying decisions as they emerge, then batch-create ADRs at the end.
 
@@ -64,7 +64,7 @@ Keep it to these four sections. Do not add extra sections like "Alternatives Con
 
 ### 1. Collect decisions during planning
 
-As architectural choices emerge during brainstorming or plan writing, note which ones cross the threshold. Track whether each was human-directed or agent-initiated.
+As architectural choices emerge during planning or design, note which ones cross the threshold. Track whether each was human-directed or agent-initiated.
 
 ### 2. Dispatch proposer subagent (one per decision)
 

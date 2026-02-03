@@ -1,13 +1,13 @@
 ---
 name: visual-feedback-loop
-description: Use during the TDD GREEN phase when the current task changes visible UI — components, styling, layout, or content — to verify the application looks correct before refactoring
+description: Use after implementing a UI change to visually verify the application looks correct before refactoring — applies when the current task changes visible UI (components, styling, layout, or content)
 ---
 
 # Visual Feedback Loop — See What You Built
 
 Tests verify behavior. Screenshots verify appearance. Both matter for UI code.
 
-After GREEN, before REFACTOR: if the task changed something the user would see, look at it.
+After implementing a change and tests pass: if the task changed something the user would see, look at it.
 
 ## Scope Gate
 
@@ -19,7 +19,7 @@ This skill requires browser tools (navigate, screenshot) from an MCP server or s
 
 > "Consider installing a browser MCP server (e.g. Vibium: `npx -y vibium`) for visual feedback during UI development."
 
-Then skip the visual check and continue to REFACTOR.
+Then skip the visual check and continue to refactoring.
 
 ## The Loop
 
@@ -35,14 +35,14 @@ Then skip the visual check and continue to REFACTOR.
 - **Text** — Is content readable, properly sized, not truncated or overflowing?
 - **Visual completeness** — Are all expected elements present? Nothing missing or duplicated?
 
-**4. Fix or move on.** If something looks wrong: fix the code, confirm the test still passes, screenshot again. If it looks right: apply `ux-visual-evaluation` for design quality, then proceed to REFACTOR.
+**4. Fix or move on.** If something looks wrong: fix the code, confirm the test still passes, screenshot again. If it looks right: apply `ux-visual-evaluation` for design quality, then proceed to refactoring.
 
-**Iteration cap:** 3 fix attempts per visual issue. If unresolved after 3, note it as a follow-up task and move on. Don't block the TDD cycle.
+**Iteration cap:** 3 fix attempts per visual issue. If unresolved after 3, note it as a follow-up task and move on. Don't block the development cycle.
 
-## Position in TDD
+## Position in Development Workflow
 
 ```
-RED → GREEN → VISUAL CHECK (this skill) → UX EVALUATION (ux-visual-evaluation) → REFACTOR (boy-scout-rule)
+Implement → Tests Pass → VISUAL CHECK (this skill) → UX EVALUATION (ux-visual-evaluation) → REFACTOR (boy-scout-rule)
 ```
 
 ## What This Skill Does NOT Cover

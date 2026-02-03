@@ -29,7 +29,7 @@ Before technical questions, establish the language the code will use.
 - Different rates of change. Pricing changes weekly; user profiles change yearly. Coupling them means one breaks the other.
 - Different ownership. Different teams making independent decisions about different parts.
 
-**Identify during brainstorming:**
+**Identify during planning:**
 - What contexts does this feature touch? Most features live in one context and talk to others.
 - What crosses the boundary? Data crossing a context boundary should be translated at the boundary, not passed as internal types. Don't import another module's domain types directly — define what your context needs and map at the edge.
 - Which context owns this concept? If "Order" exists in both Fulfillment and Billing, each has its own Order model with only the fields it needs.

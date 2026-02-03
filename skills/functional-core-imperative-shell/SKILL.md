@@ -15,7 +15,7 @@ If the answer is no, the function mixes core and shell. Every mock in a test is 
 
 ## When to Use
 
-During code review (`superpowers:code-reviewer`) on any codebase. Language-agnostic.
+During code review on any codebase. Language-agnostic.
 
 Apply as an additional pass after the standard review. Flag violations as Important.
 

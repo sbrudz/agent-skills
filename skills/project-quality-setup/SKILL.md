@@ -1,6 +1,6 @@
 ---
 name: project-quality-setup
-description: Use when a project lacks linting, formatting, pre-commit hooks, or CI. Must be completed before executing any implementation plan (superpowers:executing-plans, superpowers:subagent-driven-development). Also triggers after scaffolding a new project or when the user asks to set up code quality tooling.
+description: "PREREQUISITE: Must be completed before executing any implementation plan. Use when a project lacks linting, formatting, pre-commit hooks, or CI. Also triggers after scaffolding a new project or when the user asks to set up code quality tooling."
 compatibility: Works with any AI coding assistant.
 metadata:
   author: sbrudz
@@ -13,7 +13,7 @@ Establishes linting, formatting, pre-commit hooks, and CI **before** writing imp
 
 ## Ordering requirement
 
-**This skill must complete before any feature implementation.** If you are about to use superpowers:executing-plans or superpowers:subagent-driven-development, first check whether the project has:
+**This skill must complete before any feature implementation.** If you are about to execute an implementation plan, first check whether the project has:
 
 - A linter configured and passing
 - A formatter configured and passing

@@ -1,15 +1,15 @@
 ---
 name: ux-prototyping
-description: Use after brainstorming a UI feature when the design involves novel interactions, complex multi-step flows, or layouts where visual balance matters — to build a throwaway HTML prototype for user validation before implementation
+description: Use after designing a UI feature when the design involves novel interactions, complex multi-step flows, or layouts where visual balance matters — to build a throwaway HTML prototype for user validation before implementation
 ---
 
 # UX Prototyping — Validate Before You Build
 
-After brainstorming, before implementation: build a quick throwaway prototype to validate the design visually with the user. Catches layout and hierarchy problems before they become production code.
+After design, before implementation: build a quick throwaway prototype to validate the design visually with the user. Catches layout and hierarchy problems before they become production code.
 
 ## Threshold Gate
 
-After brainstorming completes and the design doc is written, check — does any of the following apply?
+After the design phase completes and the design doc is written, check — does any of the following apply?
 
 - Novel interaction pattern the user hasn't seen before
 - Complex multi-step flow (wizard, onboarding, multi-page form)
@@ -19,7 +19,7 @@ After brainstorming completes and the design doc is written, check — does any 
 If yes → suggest prototyping. If none apply → proceed to implementation. The user can always request or decline a prototype.
 
 ```
-Brainstorming (ux-design-principles) → PROTOTYPE (this skill) → Writing Plans → TDD
+Design (ux-design-principles) → PROTOTYPE (this skill) → Plan → Implement
 ```
 
 ## The Loop
@@ -35,7 +35,7 @@ Brainstorming (ux-design-principles) → PROTOTYPE (this skill) → Writing Plan
 - Save screenshots of the accepted prototype to `docs/plans/` alongside the design doc
 - Delete the HTML file — nothing carries into production code
 
-If the user isn't satisfied after several iterations, the requirements need more brainstorming, not more prototyping. Go back to `ux-design-principles`.
+If the user isn't satisfied after several iterations, the requirements need more design work, not more prototyping. Go back to `ux-design-principles`.
 
 ## What the Prototype Should Capture
 
