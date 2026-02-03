@@ -1,6 +1,6 @@
-# Agent Skills
+# Dev Ethos
 
-Reusable [Agent Skills](https://agentskills.io) for AI coding assistants — compatible with Claude Code, Windsurf, Codex, and any tool that supports the [Agent Skills specification](https://agentskills.io/specification).
+Opinionated [agent skills](https://agentskills.io) that guide AI coding assistants toward software development and UX design best practices. Compatible with Claude Code, Windsurf, Codex, and any tool that supports the [Agent Skills specification](https://agentskills.io/specification). Designed to complement [obra/superpowers](https://github.com/obra/superpowers).
 
 ## Available skills
 
@@ -29,8 +29,8 @@ Reusable [Agent Skills](https://agentskills.io) for AI coding assistants — com
 #### Plugin marketplace (all skills)
 
 ```
-/plugin marketplace add sbrudz/agent-skills
-/plugin install agent-skills@sbrudz-skills
+/plugin marketplace add sbrudz/dev-ethos
+/plugin install dev-ethos@sbrudz-skills
 ```
 
 #### Single skill
@@ -38,7 +38,7 @@ Reusable [Agent Skills](https://agentskills.io) for AI coding assistants — com
 Use the `/install-skill` command and provide the GitHub URL to the skill directory:
 
 ```
-/install-skill https://github.com/sbrudz/agent-skills/tree/main/skills/project-quality-setup
+/install-skill https://github.com/sbrudz/dev-ethos/tree/main/skills/project-quality-setup
 ```
 
 ### Windsurf
@@ -50,19 +50,19 @@ Windsurf loads skills from `SKILL.md` files in specific directories. You can ins
 From your project root:
 
 ```bash
-git clone https://github.com/sbrudz/agent-skills.git /tmp/agent-skills
+git clone https://github.com/sbrudz/dev-ethos.git /tmp/dev-ethos
 mkdir -p .windsurf/skills
-cp -r /tmp/agent-skills/skills/* .windsurf/skills/
-rm -rf /tmp/agent-skills
+cp -r /tmp/dev-ethos/skills/* .windsurf/skills/
+rm -rf /tmp/dev-ethos
 ```
 
 #### Global skills (all projects)
 
 ```bash
-git clone https://github.com/sbrudz/agent-skills.git /tmp/agent-skills
+git clone https://github.com/sbrudz/dev-ethos.git /tmp/dev-ethos
 mkdir -p ~/.codeium/windsurf/skills
-cp -r /tmp/agent-skills/skills/* ~/.codeium/windsurf/skills/
-rm -rf /tmp/agent-skills
+cp -r /tmp/dev-ethos/skills/* ~/.codeium/windsurf/skills/
+rm -rf /tmp/dev-ethos
 ```
 
 #### Single skill
@@ -71,7 +71,7 @@ To install just one skill (e.g., `project-quality-setup`):
 
 ```bash
 mkdir -p .windsurf/skills/project-quality-setup
-curl -sL https://raw.githubusercontent.com/sbrudz/agent-skills/main/skills/project-quality-setup/SKILL.md \
+curl -sL https://raw.githubusercontent.com/sbrudz/dev-ethos/main/skills/project-quality-setup/SKILL.md \
   -o .windsurf/skills/project-quality-setup/SKILL.md
 ```
 
@@ -86,19 +86,19 @@ Codex loads skills from `SKILL.md` files in `.codex/skills/` (repo-level) or `~/
 From your project root:
 
 ```bash
-git clone https://github.com/sbrudz/agent-skills.git /tmp/agent-skills
+git clone https://github.com/sbrudz/dev-ethos.git /tmp/dev-ethos
 mkdir -p .codex/skills
-cp -r /tmp/agent-skills/skills/* .codex/skills/
-rm -rf /tmp/agent-skills
+cp -r /tmp/dev-ethos/skills/* .codex/skills/
+rm -rf /tmp/dev-ethos
 ```
 
 #### User-level skills (all projects)
 
 ```bash
-git clone https://github.com/sbrudz/agent-skills.git /tmp/agent-skills
+git clone https://github.com/sbrudz/dev-ethos.git /tmp/dev-ethos
 mkdir -p ~/.codex/skills
-cp -r /tmp/agent-skills/skills/* ~/.codex/skills/
-rm -rf /tmp/agent-skills
+cp -r /tmp/dev-ethos/skills/* ~/.codex/skills/
+rm -rf /tmp/dev-ethos
 ```
 
 #### Single skill
@@ -107,7 +107,7 @@ To install just one skill (e.g., `project-quality-setup`):
 
 ```bash
 mkdir -p .codex/skills/project-quality-setup
-curl -sL https://raw.githubusercontent.com/sbrudz/agent-skills/main/skills/project-quality-setup/SKILL.md \
+curl -sL https://raw.githubusercontent.com/sbrudz/dev-ethos/main/skills/project-quality-setup/SKILL.md \
   -o .codex/skills/project-quality-setup/SKILL.md
 ```
 
