@@ -2,13 +2,12 @@
 
 Opinionated [agent skills](https://agentskills.io) that guide AI coding assistants toward software development and UX design best practices. Compatible with Claude Code, Windsurf, Codex, and any tool that supports the [Agent Skills specification](https://agentskills.io/specification). Designed to complement [obra/superpowers](https://github.com/obra/superpowers).
 
+For VM bootstrapping skills (GitHub credentials, superpowers installation), see [claude-vm-setup](https://github.com/sbrudz/claude-vm-setup).
+
 ## Available skills
 
 | Skill | Description |
 |-------|-------------|
-| [bootstrapping-vm](skills/bootstrapping-vm/SKILL.md) | Bootstraps a Linux VM for development by installing superpowers and configuring GitHub credentials. *(Claude Code only)* |
-| [installing-superpowers](skills/installing-superpowers/SKILL.md) | Checks if the obra/superpowers plugin collection is installed and installs it if missing. *(Claude Code only)* |
-| [configuring-github-credentials](skills/configuring-github-credentials/SKILL.md) | Configures a Linux VM with git, GitHub CLI, SSH keys, and GitHub authentication. Distro-aware package installation. |
 | [project-quality-setup](skills/project-quality-setup/SKILL.md) | Configures linting, formatting, pre-commit hooks, and CI before implementation begins. Detects the tech stack (Node.js/TypeScript, Go, Ruby, Rust) and applies the appropriate tools. |
 | [react-best-practices](skills/react-best-practices/SKILL.md) | Code review checklist for React: component responsibility splitting, useEffect misuse, React 19 patterns (Suspense, useActionState, React Compiler), behavioral accessibility, and testing practices. Covers judgment calls linters cannot catch. |
 | [functional-core-imperative-shell](skills/functional-core-imperative-shell/SKILL.md) | Code review checklist for separating business logic from side effects. Detects impure business logic, fat shells, and hidden side effects (logging, Date.now, mutable state in ostensibly pure functions). Language-agnostic. |
@@ -19,8 +18,6 @@ Opinionated [agent skills](https://agentskills.io) that guide AI coding assistan
 | [ux-visual-evaluation](skills/ux-visual-evaluation/SKILL.md) | Second-pass visual evaluation companion to visual-feedback-loop. Evaluates screenshots for design quality: visual hierarchy, whitespace, spacing consistency, color usage, affordances, system status, and consistency. Draws from Refactoring UI and Nielsen's heuristics. |
 | [ux-prototyping](skills/ux-prototyping/SKILL.md) | Throwaway HTML prototyping after brainstorming, before implementation. Threshold gate triggers for novel interactions, complex flows, or visual-balance-critical layouts. Screenshot-based iteration with user, saves accepted prototype screenshots, deletes throwaway code. |
 | [domain-driven-design](skills/domain-driven-design/SKILL.md) | Strategic DDD patterns for planning and code review. Ubiquitous language (naming after domain concepts), bounded contexts (module boundaries), and context mapping (how modules relate). Includes code review checklists for naming violations and cross-boundary coupling. |
-
-> Skills marked *(Claude Code only)* depend on the Claude Code plugin system and are not portable to other agents.
 
 ## Installation
 

@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "Reusable agent skills for AI coding assistants (Claude Code, Windsurf, Codex, and others).",
-    "version": "1.10.0",
+    "version": "2.0.0",
     "pluginRoot": "."
   },
   "plugins": [
@@ -13,14 +13,14 @@
       "name": "dev-ethos",
       "source": "./",
       "description": "Opinionated agent skills for software development and UX design best practices.",
-      "version": "1.10.0",
+      "version": "2.0.0",
       "author": {
         "name": "sbrudz"
       },
       "repository": "https://github.com/sbrudz/dev-ethos",
       "license": "MIT",
       "category": "development",
-      "tags": ["bootstrapping", "github", "ssh", "linting", "ci"]
+      "tags": ["code-quality", "architecture", "ux", "linting", "ci", "tdd"]
     }
   ]
 }
