@@ -38,6 +38,44 @@ Use the `/install-skill` command and provide the GitHub URL to the skill directo
 /install-skill https://github.com/sbrudz/dev-ethos/tree/main/skills/project-quality-setup
 ```
 
+#### Using with Superpowers Workflow Hooks
+
+Dev-ethos skills integrate with [superpowers](https://github.com/obra/superpowers) workflow hooks to automatically trigger at the right points in your development workflow (design, planning, execution, review).
+
+> **Note:** Workflow hooks require superpowers with hooks support. Until this feature is merged upstream, use the fork below.
+
+**1. Install superpowers with hooks support:**
+
+```
+/plugin marketplace add git@github.com:sbrudz-ai/superpowers.git#feature/workflow-hooks
+/plugin install superpowers@superpowers-dev
+```
+
+**2. Install dev-ethos:**
+
+```
+/plugin marketplace add sbrudz/dev-ethos
+/plugin install dev-ethos@sbrudz-skills
+```
+
+**3. Create a workflow hooks configuration file:**
+
+Copy [`workflow-hooks.yaml`](workflow-hooks.yaml) to `.claude/workflow-hooks.yaml` (project-level) or `~/.claude/workflow-hooks.yaml` (global).
+
+Or download directly:
+
+```bash
+# Project-level
+mkdir -p .claude && curl -sL https://raw.githubusercontent.com/sbrudz/dev-ethos/main/workflow-hooks.yaml -o .claude/workflow-hooks.yaml
+
+# Global
+curl -sL https://raw.githubusercontent.com/sbrudz/dev-ethos/main/workflow-hooks.yaml -o ~/.claude/workflow-hooks.yaml
+```
+
+**4. Restart Claude Code** to load the new configuration.
+
+For details on hook points, conditions, and modes, see the [superpowers workflow hooks documentation](https://github.com/sbrudz-ai/superpowers/blob/feature/workflow-hooks/hooks/workflow-hooks.md).
+
 ### Windsurf
 
 Windsurf loads skills from `SKILL.md` files in specific directories. You can install skills at the workspace level (one project) or globally (all projects).
