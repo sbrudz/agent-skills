@@ -9,7 +9,7 @@ Supplement to the standard code review checklist. Covers judgment calls that lin
 
 ## When to Use
 
-During code review (`superpowers:code-reviewer`) when the diff contains React code (`.tsx`, `.jsx`, or `.ts` files importing from `"react"`).
+During code review when the diff contains React code (`.tsx`, `.jsx`, or `.ts` files importing from `"react"`).
 
 Apply these checks **after** the standard code quality review, as an additional pass.
 

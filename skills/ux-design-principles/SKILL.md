@@ -1,17 +1,17 @@
 ---
 name: ux-design-principles
-description: Use when brainstorming or designing features that involve user-facing UI — pages, components, flows, or interactions — to apply user-centered design thinking before implementation begins
+description: Use when planning or designing features that involve user-facing UI — pages, components, flows, or interactions — to apply user-centered design thinking before implementation begins
 ---
 
 # UX Design Principles — Design for Users, Not Features
 
-Companion to `superpowers:brainstorming` for UI features. Injects user-centered thinking into design decisions before any code is written.
+Companion to feature planning and design for UI features. Injects user-centered thinking into design decisions before any code is written.
 
 ## Scope Gate
 
 Is this feature user-facing? Pages, components, flows, interactions → apply. Infrastructure, APIs, data pipelines, backend-only logic → skip.
 
-## During Brainstorming: Ask These First
+## During Planning: Ask These First
 
 Before technical questions (stack, architecture, data model), establish the user context. These questions come from Goal-Directed Design (Cooper):
 

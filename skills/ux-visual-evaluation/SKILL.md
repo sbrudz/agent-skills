@@ -1,6 +1,6 @@
 ---
 name: ux-visual-evaluation
-description: Use after the visual-feedback-loop basic check passes during the TDD GREEN phase to evaluate screenshots for visual design quality — hierarchy, whitespace, affordances, and consistency
+description: Use after visual-feedback-loop confirms basic correctness to evaluate screenshots for visual design quality — hierarchy, whitespace, affordances, and consistency
 ---
 
 # UX Visual Evaluation — Does It Look Good and Feel Usable?
@@ -12,7 +12,7 @@ Second pass after `visual-feedback-loop` confirms the UI renders correctly. Same
 After visual-feedback-loop's 5-item check passes. If that skill skipped (non-UI task or no browser tools), this skill also skips. Uses the existing screenshot — don't take a new one.
 
 ```
-GREEN → basic visual check (visual-feedback-loop) → UX evaluation (this skill) → REFACTOR
+Implement → Tests Pass → basic visual check (visual-feedback-loop) → UX evaluation (this skill) → Refactor
 ```
 
 ## Visual Design Criteria
@@ -33,7 +33,7 @@ Evaluate the screenshot for:
 
 ## Iteration
 
-Same as visual-feedback-loop: fix, confirm test passes, re-evaluate. 3-attempt cap per issue — if unresolved, note as follow-up and proceed to REFACTOR.
+Same as visual-feedback-loop: fix, confirm test passes, re-evaluate. 3-attempt cap per issue — if unresolved, note as follow-up and proceed to refactoring.
 
 ## What This Skill Does NOT Cover
 
