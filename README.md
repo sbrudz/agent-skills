@@ -1,8 +1,8 @@
 # Agent Skills
 
-Opinionated [agent skills](https://agentskills.io) that guide AI coding assistants toward software development and UX design best practices. Compatible with Claude Code, Windsurf, Codex, and any tool that supports the [Agent Skills specification](https://agentskills.io/specification). Designed to complement [obra/superpowers](https://github.com/obra/superpowers).
+Opinionated [agent skills](https://agentskills.io) that guide AI coding assistants toward software development and UX design best practices. Compatible with Claude Code, Windsurf, Codex, and any tool that supports the [Agent Skills specification](https://agentskills.io/specification).
 
-For VM bootstrapping skills (GitHub credentials, superpowers installation), see [claude-vm-setup](https://github.com/sbrudz/claude-vm-setup).
+For VM bootstrapping skills (GitHub credentials, tool installation), see [claude-vm-setup](https://github.com/sbrudz/claude-vm-setup).
 
 ## Available skills
 
@@ -18,6 +18,10 @@ For VM bootstrapping skills (GitHub credentials, superpowers installation), see 
 | [ux-visual-evaluation](skills/ux-visual-evaluation/SKILL.md) | Second-pass visual evaluation companion to visual-feedback-loop. Evaluates screenshots for design quality: visual hierarchy, whitespace, spacing consistency, color usage, affordances, system status, and consistency. Draws from Refactoring UI and Nielsen's heuristics. |
 | [ux-prototyping](skills/ux-prototyping/SKILL.md) | Throwaway HTML prototyping after brainstorming, before implementation. Threshold gate triggers for novel interactions, complex flows, or visual-balance-critical layouts. Screenshot-based iteration with user, saves accepted prototype screenshots, deletes throwaway code. |
 | [domain-driven-design](skills/domain-driven-design/SKILL.md) | Strategic DDD patterns for planning and code review. Ubiquitous language (naming after domain concepts), bounded contexts (module boundaries), and context mapping (how modules relate). Includes code review checklists for naming violations and cross-boundary coupling. |
+
+## Recommended companions
+
+- **[obra/superpowers](https://github.com/obra/superpowers)** — Process-oriented skills for TDD, debugging, brainstorming, and development workflow. Pairs well with the domain and code-quality skills in this collection.
 
 ## Installation
 
@@ -37,44 +41,6 @@ Use the `/install-skill` command and provide the GitHub URL to the skill directo
 ```
 /install-skill https://github.com/sbrudz/agent-skills/tree/main/skills/project-quality-setup
 ```
-
-#### Using with Superpowers Workflow Hooks
-
-Agent-skills integrate with [superpowers](https://github.com/obra/superpowers) workflow hooks to automatically trigger at the right points in your development workflow (design, planning, execution, review).
-
-> **Note:** Workflow hooks require superpowers with hooks support. Until this feature is merged upstream, use the fork below.
-
-**1. Install superpowers with hooks support:**
-
-```
-/plugin marketplace add git@github.com:sbrudz-ai/superpowers.git#feature/workflow-hooks
-/plugin install superpowers@superpowers-dev
-```
-
-**2. Install agent-skills:**
-
-```
-/plugin marketplace add sbrudz/agent-skills
-/plugin install agent-skills@sbrudz-skills
-```
-
-**3. Create a workflow hooks configuration file:**
-
-Copy [`workflow-hooks.yaml`](workflow-hooks.yaml) to `.claude/workflow-hooks.yaml` (project-level) or `~/.claude/workflow-hooks.yaml` (global).
-
-Or download directly:
-
-```bash
-# Project-level
-mkdir -p .claude && curl -sL https://raw.githubusercontent.com/sbrudz/agent-skills/main/workflow-hooks.yaml -o .claude/workflow-hooks.yaml
-
-# Global
-curl -sL https://raw.githubusercontent.com/sbrudz/agent-skills/main/workflow-hooks.yaml -o ~/.claude/workflow-hooks.yaml
-```
-
-**4. Restart Claude Code** to load the new configuration.
-
-For details on hook points, conditions, and modes, see the [superpowers workflow hooks documentation](https://github.com/sbrudz-ai/superpowers/blob/feature/workflow-hooks/hooks/workflow-hooks.md).
 
 ### Windsurf
 
