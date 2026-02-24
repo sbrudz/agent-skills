@@ -10,14 +10,14 @@
   },
   "plugins": [
     {
-      "name": "dev-ethos",
+      "name": "agent-skills",
       "source": "./",
       "description": "Opinionated agent skills for software development and UX design best practices.",
       "version": "2.1.0",
       "author": {
         "name": "sbrudz"
       },
-      "repository": "https://github.com/sbrudz/dev-ethos",
+      "repository": "https://github.com/sbrudz/agent-skills",
       "license": "MIT",
       "category": "development",
       "tags": ["code-quality", "architecture", "ux", "linting", "ci", "tdd"]

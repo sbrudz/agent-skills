@@ -1,4 +1,4 @@
-# Dev Ethos — Claude Code Instructions
+# Agent Skills — Claude Code Instructions
 
 ## Commit Format
 
@@ -57,7 +57,7 @@ gh release create vX.Y.Z --notes "$(cat <<'EOF'
 
 Any additional context (e.g., companion skill updates, CLAUDE.md changes).
 
-**Full Changelog**: https://github.com/sbrudz/dev-ethos/compare/vPREVIOUS...vX.Y.Z
+**Full Changelog**: https://github.com/sbrudz/agent-skills/compare/vPREVIOUS...vX.Y.Z
 EOF
 )"
 ```

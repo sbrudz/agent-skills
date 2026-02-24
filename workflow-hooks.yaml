@@ -1,5 +1,5 @@
 # Workflow Hooks Configuration
-# Maps dev-ethos skills to superpowers workflow hook points
+# Maps agent-skills skills to superpowers workflow hook points
 
 hooks:
   # ─────────────────────────────────────────────────────────────
@@ -8,17 +8,17 @@ hooks:
 
   before_design:
     # Apply UX principles when designing user-facing features
-    - skill: dev-ethos:ux-design-principles
+    - skill: agent-skills:ux-design-principles
       condition: if_ui
     # Apply DDD for features involving business logic
-    - skill: dev-ethos:domain-driven-design
+    - skill: agent-skills:domain-driven-design
 
   after_design:
     # Build throwaway prototypes for complex UI interactions
-    - skill: dev-ethos:ux-prototyping
+    - skill: agent-skills:ux-prototyping
       condition: if_ui
     # Document significant architectural decisions made during design
-    - skill: dev-ethos:architecture-decision-records
+    - skill: agent-skills:architecture-decision-records
 
   # ─────────────────────────────────────────────────────────────
   # PLANNING PHASE
@@ -26,11 +26,11 @@ hooks:
 
   before_plan:
     # Consider architectural implications before planning
-    - skill: dev-ethos:architecture-decision-records
+    - skill: agent-skills:architecture-decision-records
 
   after_plan:
     # Ensure project quality tooling is set up before execution
-    - skill: dev-ethos:project-quality-setup
+    - skill: agent-skills:project-quality-setup
       condition: if_new_project
 
   # ─────────────────────────────────────────────────────────────
@@ -39,14 +39,14 @@ hooks:
 
   before_execute:
     # Verify quality tooling is in place (prerequisite for plans)
-    - skill: dev-ethos:project-quality-setup
+    - skill: agent-skills:project-quality-setup
       mode: check
 
   after_task:
     # Apply incremental refactoring to touched code
-    - skill: dev-ethos:boy-scout-rule
+    - skill: agent-skills:boy-scout-rule
     # Visually verify UI changes look correct
-    - skill: dev-ethos:visual-feedback-loop
+    - skill: agent-skills:visual-feedback-loop
       condition: if_ui_changed
 
   # ─────────────────────────────────────────────────────────────
@@ -55,14 +55,14 @@ hooks:
 
   before_review:
     # Inject React best practices into review criteria
-    - skill: dev-ethos:react-best-practices
+    - skill: agent-skills:react-best-practices
       condition: if_react
       mode: inject
     # Check for logic/IO separation issues
-    - skill: dev-ethos:functional-core-imperative-shell
+    - skill: agent-skills:functional-core-imperative-shell
       mode: inject
     # Check naming and module boundaries
-    - skill: dev-ethos:domain-driven-design
+    - skill: agent-skills:domain-driven-design
       mode: inject
 
   # ─────────────────────────────────────────────────────────────
@@ -71,5 +71,5 @@ hooks:
 
   after_execute:
     # Evaluate visual design quality after UI work
-    - skill: dev-ethos:ux-visual-evaluation
+    - skill: agent-skills:ux-visual-evaluation
       condition: if_ui_changed
