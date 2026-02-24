@@ -1,6 +1,6 @@
 ---
 name: boy-scout-rule
-description: Use after making tests pass to apply incremental refactoring improvements to touched code and its immediate neighbors, and during code review
+description: Use after making tests pass to apply incremental refactoring improvements to touched code and its immediate neighbors, during code review, or before committing changes
 ---
 
 # Boy Scout Rule — Leave the Code Cleaner Than You Found It
@@ -45,7 +45,7 @@ Apply during code review. The reviewer has the full diff and can spot cross-cutt
 - **Growing modules** — Did this task push a file past the point where it's easy to navigate? Flag for splitting.
 - **Leaky abstractions** — Does the caller need to know implementation details to use this code correctly? Tighten the interface.
 
-### Companion skill checks
+### Related skill checks
 
 - If code mixes business logic with I/O → apply `functional-core-imperative-shell` checklist
 - If code is React (`.tsx`/`.jsx`) → apply `react-best-practices` Section 1 (component responsibility)
@@ -55,3 +55,8 @@ Apply during code review. The reviewer has the full diff and can spot cross-cutt
 - Formatting/whitespace changes — that's the linter's job
 - Renaming across the whole codebase when only one file was touched
 - Refactoring that would require its own unrelated tests — note as a follow-up task
+
+## Related Skills
+
+- **Prerequisite:** `visual-feedback-loop` (for UI tasks — verify appearance before refactoring)
+- **Pairs with:** `functional-core-imperative-shell` (if code mixes business logic with I/O), `react-best-practices` (if code is React), `domain-driven-design` (rename to match ubiquitous language)

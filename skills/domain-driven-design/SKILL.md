@@ -50,9 +50,14 @@ Before technical questions, establish the language the code will use.
 - Are domain types shared across contexts? Each context should own its representation.
 - Is translation happening at boundaries? Data crossing contexts should be mapped, not passed through as the sender's types.
 
-## Companion Skills
+## Related Skills
 
-- `functional-core-imperative-shell` — the functional core IS the domain model. DDD structures what goes in the core; FCIS keeps it pure.
-- `boy-scout-rule` — "rename for clarity" becomes "rename to match ubiquitous language."
-- `architecture-decision-records` — bounded context boundaries warrant ADRs.
-- `ux-design-principles` — ubiquitous language should flow through to UI labels.
+**During planning:**
+- `architecture-decision-records` — bounded context boundaries warrant ADRs
+- `ux-design-principles` — ubiquitous language should flow through to UI labels
+
+**During implementation:**
+- `functional-core-imperative-shell` — the functional core IS the domain model. DDD structures what goes in the core; FCIS keeps it pure
+
+**During refactoring:**
+- `boy-scout-rule` — "rename for clarity" becomes "rename to match ubiquitous language"

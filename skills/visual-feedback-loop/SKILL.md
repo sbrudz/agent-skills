@@ -1,6 +1,6 @@
 ---
 name: visual-feedback-loop
-description: Use after implementing a UI change to visually verify the application looks correct before refactoring — applies when the current task changes visible UI (components, styling, layout, or content)
+description: Use after implementing a UI change or before committing UI changes to visually verify the application looks correct — applies when the current task changes visible UI (components, styling, layout, or content)
 ---
 
 # Visual Feedback Loop — See What You Built
@@ -51,3 +51,8 @@ Implement → Tests Pass → VISUAL CHECK (this skill) → UX EVALUATION (ux-vis
 - Multi-viewport responsive checks — separate concern
 - Visual regression diffing — CI tooling
 - Accessibility audits — `react-best-practices` and dedicated tools
+
+## Related Skills
+
+- **Prerequisite:** `ux-design-principles` (design thinking should inform what "correct" looks like)
+- **Next:** `ux-visual-evaluation` (design quality evaluation after basic correctness passes) → `boy-scout-rule` (refactoring after visual verification)

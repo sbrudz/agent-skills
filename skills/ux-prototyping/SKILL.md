@@ -49,3 +49,8 @@ If the user isn't satisfied after several iterations, the requirements need more
 - Real data or API integration
 - Interactive behavior beyond basic structure
 - Design system components — that's implementation work
+
+## Related Skills
+
+- **Prerequisite:** `ux-design-principles` (design thinking must precede prototyping)
+- **Next:** implementation planning → `visual-feedback-loop` (verify the production implementation matches the approved prototype)

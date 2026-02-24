@@ -1,6 +1,6 @@
 ---
 name: ux-design-principles
-description: Use when planning or designing features that involve user-facing UI — pages, components, flows, or interactions — to apply user-centered design thinking before implementation begins
+description: Use when planning or designing features that involve user-facing UI, or before writing code for any new user-facing feature — pages, components, flows, or interactions — to apply user-centered design thinking before implementation begins
 ---
 
 # UX Design Principles — Design for Users, Not Features
@@ -40,3 +40,9 @@ Include a UX rationale section: who the user is, what their goal is, and which p
 - Visual design (spacing, color, hierarchy) — `ux-visual-evaluation`
 - Accessibility implementation — `react-best-practices`
 - Prototyping workflow — `ux-prototyping`
+
+## Related Skills
+
+- **Next (complex UI):** `ux-prototyping` (when design involves novel interactions, complex flows, or visual-balance-critical layouts — prototype before implementing)
+- **Next (standard UI):** proceed to implementation → `visual-feedback-loop` (verify the implementation visually)
+- **Pairs with:** `domain-driven-design` (ubiquitous language should flow through to UI labels)

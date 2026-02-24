@@ -1,6 +1,6 @@
 ---
 name: ux-visual-evaluation
-description: Use after visual-feedback-loop confirms basic correctness to evaluate screenshots for visual design quality — hierarchy, whitespace, affordances, and consistency
+description: Use after visual-feedback-loop confirms basic correctness, or when UI changes are complete and a screenshot is available, to evaluate screenshots for visual design quality — hierarchy, whitespace, affordances, and consistency
 ---
 
 # UX Visual Evaluation — Does It Look Good and Feel Usable?
@@ -9,7 +9,11 @@ Second pass after `visual-feedback-loop` confirms the UI renders correctly. Same
 
 ## When to Run
 
-After visual-feedback-loop's 5-item check passes. If that skill skipped (non-UI task or no browser tools), this skill also skips. Uses the existing screenshot — don't take a new one.
+**After visual-feedback-loop:** When visual-feedback-loop's 5-item check passes. Uses the existing screenshot — don't take a new one.
+
+**Independent:** When UI changes are complete and a screenshot is available, even if visual-feedback-loop was not run. Take or request a screenshot, then evaluate.
+
+If the task is non-UI and no screenshot is available → skip.
 
 ```
 Implement → Tests Pass → basic visual check (visual-feedback-loop) → UX evaluation (this skill) → Refactor
@@ -40,3 +44,8 @@ Same as visual-feedback-loop: fix, confirm test passes, re-evaluate. 3-attempt c
 - Whether the UI renders correctly — `visual-feedback-loop`
 - Design decisions (who is the user, what's their goal) — `ux-design-principles`
 - Accessibility audits — `react-best-practices` and dedicated tools
+
+## Related Skills
+
+- **Prerequisite:** `visual-feedback-loop` (basic correctness check before design evaluation), `ux-design-principles` (design rationale informs evaluation criteria)
+- **Next:** `boy-scout-rule` (refactoring after visual verification is complete)
