@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "Reusable agent skills for AI coding assistants (Claude Code, Windsurf, Codex, and others).",
-    "version": "2.1.0",
+    "version": "2.1.1",
     "pluginRoot": "."
   },
   "plugins": [
@@ -13,7 +13,7 @@
       "name": "agent-skills",
       "source": "./",
       "description": "Opinionated agent skills for software development and UX design best practices.",
-      "version": "2.1.0",
+      "version": "2.1.1",
       "author": {
         "name": "sbrudz"
       },
