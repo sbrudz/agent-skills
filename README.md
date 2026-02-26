@@ -8,7 +8,6 @@ For VM bootstrapping skills (GitHub credentials, tool installation), see [claude
 
 | Skill | Description |
 |-------|-------------|
-| [project-quality-setup](skills/project-quality-setup/SKILL.md) | Configures linting, formatting, pre-commit hooks, and CI before implementation begins. Detects the tech stack (Node.js/TypeScript, Go, Ruby, Rust) and applies the appropriate tools. |
 | [react-best-practices](skills/react-best-practices/SKILL.md) | Code review checklist for React: component responsibility splitting, useEffect misuse, React 19 patterns (Suspense, useActionState, React Compiler), behavioral accessibility, and testing practices. Covers judgment calls linters cannot catch. |
 | [functional-core-imperative-shell](skills/functional-core-imperative-shell/SKILL.md) | Code review checklist for separating business logic from side effects. Detects impure business logic, fat shells, and hidden side effects (logging, Date.now, mutable state in ostensibly pure functions). Language-agnostic. |
 | [architecture-decision-records](skills/architecture-decision-records/SKILL.md) | Captures significant architectural decisions during planning using Michael Nygard's ADR template. Two-subagent workflow: proposer drafts the ADR, reviewer checks quality. Includes threshold gate to prevent ADR bloat. |
@@ -39,7 +38,7 @@ For VM bootstrapping skills (GitHub credentials, tool installation), see [claude
 Use the `/install-skill` command and provide the GitHub URL to the skill directory:
 
 ```
-/install-skill https://github.com/sbrudz/agent-skills/tree/main/skills/project-quality-setup
+/install-skill https://github.com/sbrudz/agent-skills/tree/main/skills/react-best-practices
 ```
 
 ### Windsurf
@@ -68,12 +67,12 @@ rm -rf /tmp/agent-skills
 
 #### Single skill
 
-To install just one skill (e.g., `project-quality-setup`):
+To install just one skill (e.g., `react-best-practices`):
 
 ```bash
-mkdir -p .windsurf/skills/project-quality-setup
-curl -sL https://raw.githubusercontent.com/sbrudz/agent-skills/main/skills/project-quality-setup/SKILL.md \
-  -o .windsurf/skills/project-quality-setup/SKILL.md
+mkdir -p .windsurf/skills/react-best-practices
+curl -sL https://raw.githubusercontent.com/sbrudz/agent-skills/main/skills/react-best-practices/SKILL.md \
+  -o .windsurf/skills/react-best-practices/SKILL.md
 ```
 
 Skills are available in Cascade via `@skill-name` mentions once installed.
@@ -104,12 +103,12 @@ rm -rf /tmp/agent-skills
 
 #### Single skill
 
-To install just one skill (e.g., `project-quality-setup`):
+To install just one skill (e.g., `react-best-practices`):
 
 ```bash
-mkdir -p .codex/skills/project-quality-setup
-curl -sL https://raw.githubusercontent.com/sbrudz/agent-skills/main/skills/project-quality-setup/SKILL.md \
-  -o .codex/skills/project-quality-setup/SKILL.md
+mkdir -p .codex/skills/react-best-practices
+curl -sL https://raw.githubusercontent.com/sbrudz/agent-skills/main/skills/react-best-practices/SKILL.md \
+  -o .codex/skills/react-best-practices/SKILL.md
 ```
 
 > **Note:** Some skills have supporting files in `references/` subdirectories. When installing single skills, check the skill's `SKILL.md` for references and copy those files too.
