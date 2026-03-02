@@ -48,7 +48,8 @@ For any change involving a decision, trade-off, or non-obvious fix, answer these
 
 1. **What was wrong before?** What problem, gap, or constraint triggered this change?
 2. **Why this approach?** If alternatives existed, why this one?
-3. **Anything the reader needs to know?** Side effects, follow-ups, related issues?
+3. **Who or what is affected?** End users, CI, developers, a specific test, a downstream service? Make this the **first sentence of the body** when the scope is non-obvious — a CI-only fix in production code should open with "CI only — no user-facing behavior change" before explaining the mechanism.
+4. **Anything the reader needs to know?** Side effects, follow-ups, related issues?
 
 **The body is optional only for purely mechanical changes** (version bumps, generated file updates, whitespace-only fixes).
 
@@ -95,3 +96,4 @@ Before committing:
 | Vague subject (`fix bug`, `update files`) | Name the specific thing that changed and what happened to it |
 | Combining unrelated changes | Flag hygiene issue before drafting; suggest splitting |
 | Writing body for a version bump | Body optional for mechanical changes with no decision involved |
+| Burying the scope of impact | State who/what is affected early — a CI-only fix in production code should not read like a user-facing bug fix |
