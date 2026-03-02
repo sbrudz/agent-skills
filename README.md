@@ -23,22 +23,6 @@ For VM bootstrapping skills (GitHub credentials, tool installation), see [claude
 
 - **[obra/superpowers](https://github.com/obra/superpowers)** — Process-oriented skills for TDD, debugging, brainstorming, and development workflow. Pairs well with the domain and code-quality skills in this collection.
 
-## Updating
-
-### Claude Code
-
-```
-/plugin update agent-skills
-```
-
-### Windsurf
-
-Re-run the install commands for your scope (workspace or global). The `cp -r` will overwrite existing skill files with the latest versions.
-
-### Codex
-
-Re-run the install commands for your scope (repo-level or user-level). The `cp -r` will overwrite existing skill files with the latest versions.
-
 ## Installation
 
 ### Claude Code
@@ -133,6 +117,22 @@ curl -sL https://raw.githubusercontent.com/sbrudz/agent-skills/main/skills/react
 ### Other agents
 
 Any agent that supports the [Agent Skills specification](https://agentskills.io/specification) can use these skills. Point the agent at the `SKILL.md` file in the relevant skill directory.
+
+## Updating
+
+### Claude Code
+
+```
+/plugin marketplace update sbrudz-skills
+```
+
+### Windsurf
+
+Re-run the install commands for your scope (workspace or global). The `cp -r` will overwrite existing skill files with the latest versions.
+
+### Codex
+
+Re-run the install commands for your scope (repo-level or user-level). The `cp -r` will overwrite existing skill files with the latest versions.
 
 ## Creating new skills
 
