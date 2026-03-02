@@ -23,6 +23,22 @@ For VM bootstrapping skills (GitHub credentials, tool installation), see [claude
 
 - **[obra/superpowers](https://github.com/obra/superpowers)** — Process-oriented skills for TDD, debugging, brainstorming, and development workflow. Pairs well with the domain and code-quality skills in this collection.
 
+## Updating
+
+### Claude Code
+
+```
+/plugin update agent-skills
+```
+
+### Windsurf
+
+Re-run the install commands for your scope (workspace or global). The `cp -r` will overwrite existing skill files with the latest versions.
+
+### Codex
+
+Re-run the install commands for your scope (repo-level or user-level). The `cp -r` will overwrite existing skill files with the latest versions.
+
 ## Installation
 
 ### Claude Code
