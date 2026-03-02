@@ -17,6 +17,7 @@ For VM bootstrapping skills (GitHub credentials, tool installation), see [claude
 | [ux-visual-evaluation](skills/ux-visual-evaluation/SKILL.md) | Second-pass visual evaluation after visual-feedback-loop or when UI changes are complete and a screenshot is available. Evaluates screenshots for design quality: visual hierarchy, whitespace, spacing consistency, color usage, affordances, system status, and consistency. Draws from Refactoring UI and Nielsen's heuristics. |
 | [ux-prototyping](skills/ux-prototyping/SKILL.md) | Throwaway HTML prototyping after brainstorming, before implementation. Threshold gate triggers for novel interactions, complex flows, or visual-balance-critical layouts. Screenshot-based iteration with user, saves accepted prototype screenshots, deletes throwaway code. |
 | [domain-driven-design](skills/domain-driven-design/SKILL.md) | Strategic DDD patterns for planning and code review. Ubiquitous language (naming after domain concepts), bounded contexts (module boundaries), and context mapping (how modules relate). Includes code review checklists for naming violations and cross-boundary coupling. |
+| [git-commit-message](skills/git-commit-message/SKILL.md) | Guides writing commit messages that explain *why* a change was made, not what changed. Covers repo convention detection (conventional commits vs match-existing-style), hygiene flagging for multi-concern diffs, subject line rules, and a body-writing framework anchored on the why-not-what principle. |
 
 ## Recommended companions
 
