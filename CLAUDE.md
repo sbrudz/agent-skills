@@ -34,6 +34,12 @@ Bump the version string in **all three** locations — they must stay in sync:
 2. `.claude-plugin/marketplace.json` → `metadata.version`
 3. `.claude-plugin/marketplace.json` → `plugins[0].version`
 
+## Adding or Removing Skills
+
+When a skill is added, removed, or significantly changed:
+
+1. **Update README.md immediately** — add/update/remove the skill's row in the Available Skills table before committing the skill itself (or in the same commit).
+
 ### Pre-release checklist
 
 Before bumping versions, ensure:
