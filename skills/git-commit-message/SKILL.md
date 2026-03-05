@@ -7,15 +7,34 @@ description: Use when about to write a git commit message, before running git co
 
 A commit message is not a description of what changed — the diff already shows that. It's a record of *why* the change was made: the problem it solved, the constraint it respected, the decision it encoded. This skill guides writing messages that are useful months later to a reader with no context.
 
-## Step 1 — Detect Repo Convention (do this first)
+## Step 1 — Use Conventional Commits Format (always)
 
-Run `git log --oneline -20` and scan the subject lines.
+Always use [Conventional Commits](https://www.conventionalcommits.org/) format:
 
-- If ≥50% use `type:` or `type(scope):` prefixes → **conventional commits mode**
-- If the repo has no commits yet → **conventional commits mode** (new repo default)
-- Otherwise → **match existing style**: extract the dominant pattern from recent commits (ticket prefixes, sentence case, imperative phrases, etc.) and replicate it
+```
+<type>[optional scope]: <description>
 
-**Do not default to conventional commits if the repo uses a different style.**
+[optional body]
+
+[optional footer(s)]
+```
+
+**Types:** `feat`, `fix`, `refactor`, `docs`, `chore`, `test`, `style`, `perf`, `ci`, `build`
+
+- `feat:` — new feature or capability
+- `fix:` — bug fix
+- `docs:` — documentation only
+- `refactor:` — restructuring without behavior change
+- `chore:` — build, deps, tooling, config
+- `test:` — adding or updating tests
+- `style:` — formatting, whitespace (no logic change)
+- `perf:` — performance improvement
+- `ci:` — CI/CD pipeline changes
+- `build:` — build system changes
+
+Use a scope when helpful: `feat(auth):`, `fix(api):`, `docs(readme):`
+
+Breaking changes: append `!` after type (`feat!:`) or add `BREAKING CHANGE:` footer.
 
 ## Step 2 — Hygiene Check (flag before drafting)
 
@@ -77,7 +96,7 @@ Separate subject from body with a blank line. Wrap body lines at 72 chars.
 
 Before committing:
 
-- [ ] Subject follows detected repo convention
+- [ ] Subject uses conventional commits format (`type[scope]: description`)
 - [ ] Subject is imperative mood
 - [ ] Subject is ≤72 chars (≤50 preferred)
 - [ ] Subject has no trailing period
@@ -92,7 +111,6 @@ Before committing:
 | Mistake | Fix |
 |---|---|
 | Body restates the diff | Ask: "Does this say anything the diff doesn't?" If not, replace with *why* |
-| Defaulting to conventional commits in a non-CC repo | Run `git log --oneline -20` first, always |
 | Vague subject (`fix bug`, `update files`) | Name the specific thing that changed and what happened to it |
 | Combining unrelated changes | Flag hygiene issue before drafting; suggest splitting |
 | Writing body for a version bump | Body optional for mechanical changes with no decision involved |
