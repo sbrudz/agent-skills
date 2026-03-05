@@ -19,22 +19,7 @@ Always use [Conventional Commits](https://www.conventionalcommits.org/) format:
 [optional footer(s)]
 ```
 
-**Types:** `feat`, `fix`, `refactor`, `docs`, `chore`, `test`, `style`, `perf`, `ci`, `build`
-
-- `feat:` — new feature or capability
-- `fix:` — bug fix
-- `docs:` — documentation only
-- `refactor:` — restructuring without behavior change
-- `chore:` — build, deps, tooling, config
-- `test:` — adding or updating tests
-- `style:` — formatting, whitespace (no logic change)
-- `perf:` — performance improvement
-- `ci:` — CI/CD pipeline changes
-- `build:` — build system changes
-
-Use a scope when helpful: `feat(auth):`, `fix(api):`, `docs(readme):`
-
-Breaking changes: append `!` after type (`feat!:`) or add `BREAKING CHANGE:` footer.
+Use standard types (`feat`, `fix`, `docs`, `refactor`, `chore`, `test`, `style`, `perf`, `ci`, `build`), an optional scope (`feat(auth):`), and a `!` suffix or `BREAKING CHANGE:` footer for breaking changes.
 
 ## Step 2 — Hygiene Check (flag before drafting)
 
