@@ -7,9 +7,11 @@ description: Use when about to write a git commit message, before running git co
 
 A commit message is not a description of what changed — the diff already shows that. It's a record of *why* the change was made: the problem it solved, the constraint it respected, the decision it encoded. This skill guides writing messages that are useful months later to a reader with no context.
 
-## Step 1 — Use Conventional Commits Format (always)
+## Step 1 — Match the Repo's Commit Convention
 
-Always use [Conventional Commits](https://www.conventionalcommits.org/) format:
+The repo's existing convention is the tiebreak: check recent history (`git log --oneline -20`) and any AGENTS.md/CONTRIBUTING guidance, and match what the repo actually uses.
+
+Where the repo uses or requires [Conventional Commits](https://www.conventionalcommits.org/) — and as the default when no convention is discernible — use:
 
 ```
 <type>[optional scope]: <description>
@@ -20,6 +22,8 @@ Always use [Conventional Commits](https://www.conventionalcommits.org/) format:
 ```
 
 Use standard types (`feat`, `fix`, `docs`, `refactor`, `chore`, `test`, `style`, `perf`, `ci`, `build`), an optional scope (`feat(auth):`), and a `!` suffix or `BREAKING CHANGE:` footer for breaking changes.
+
+Keep harness-added `Co-Authored-By` trailers — don't strip them.
 
 ## Step 2 — Hygiene Check (flag before drafting)
 
@@ -43,6 +47,7 @@ When drafting a combined message: subject covers the most significant change; bo
   - ✓ `Fix off-by-one error in pagination that skipped last item`
   - ✗ `Fix pagination bug`
 - **No "and"** — if you need it, split the commit
+- **No "This commit..." openers** — in subject or body; describe the change directly
 
 ## Step 4 — Write the Body (required for non-trivial changes)
 
@@ -81,7 +86,7 @@ Separate subject from body with a blank line. Wrap body lines at 72 chars.
 
 Before committing:
 
-- [ ] Subject uses conventional commits format (`type[scope]: description`)
+- [ ] Subject matches the repo's convention (conventional commits `type[scope]: description` where the repo uses it, or by default)
 - [ ] Subject is imperative mood
 - [ ] Subject is ≤72 chars (≤50 preferred)
 - [ ] Subject has no trailing period
