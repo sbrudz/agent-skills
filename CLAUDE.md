@@ -34,11 +34,22 @@ Bump the version string in **all three** locations — they must stay in sync:
 2. `.claude-plugin/marketplace.json` → `metadata.version`
 3. `.claude-plugin/marketplace.json` → `plugins[0].version`
 
+## Development Notes
+
+### Background agent notifications can be silently dropped
+
+When running tests or work via background subagents, completion notifications are unreliable — agents may finish but never notify. If a test appears hung for more than a few minutes, check the output file directly (`ls -la /tmp/<expected-output-file>`) rather than waiting. The file existing means the agent completed silently.
+
+### Verify subagent self-reported metrics independently
+
+Subagents routinely misreport quantitative metrics about their own output (word counts, percentage reductions, file sizes). When a subagent claims "reduced by 55%," verify with `wc -w` or equivalent. Subagent self-reports are directional at best — never trust the specific numbers without independent verification.
+
 ## Adding or Removing Skills
 
 When a skill is added, removed, or significantly changed:
 
 1. **Update README.md immediately** — add/update/remove the skill's row in the Available Skills table before committing the skill itself (or in the same commit).
+2. **Test across models when creating or significantly revising a skill.** Sonnet and Opus have different natural tendencies (e.g., Opus has a stronger "add detail" instinct during revision). A skill that works for one model may fail for the other. Run RED-GREEN-REFACTOR cycles on both models before finalizing.
 
 ### Pre-release checklist
 
