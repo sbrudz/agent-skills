@@ -1,6 +1,6 @@
 ---
 name: writing-clear-tech-docs
-description: Use when creating, revising, or refining software design documents, RFCs, architecture decision records, or other technical prose intended to be read and understood by fellow engineers. Also use when a technical document is accurate but dense, hard to follow, buries key insights in detail, reads like a list of facts rather than an argument, or got longer after a revision pass.
+description: Use when creating, revising, or refining software design documents, RFCs, architecture decision records, or other technical prose intended to be read and understood by fellow engineers. Also use when a technical document is accurate but dense, hard to follow, buries key insights in detail, reads like a list of facts rather than an argument, refers to ideas by label (decision numbers, doc names, ticket ids) instead of stating them, or got longer after a revision pass.
 ---
 
 # Writing Technical Documents
@@ -32,7 +32,7 @@ Write in passes. Each pass has one lens. Do not try to do everything at once.
 - **BLUF (Bottom Line Up Front):** Every section opens with its conclusion. Never lead with background or preamble.
 - **SCQA opening:** The document's first paragraph: Situation → Complication → Question → Answer. Max 4 sentences. Example: *"We serve 10k requests/min (S). Traffic is doubling every quarter; the current architecture won't scale past 50k (C). How do we handle 200k+ without rewriting 6 months from now? (Q) We will shard by tenant and add a read-replica layer (A)."*
 - **Governing ideas:** Each section has exactly one. Need two? Split the section.
-- **Headings as claims, not topic labels:** "We will use Postgres, not Mongo" not "Database Choice."
+- **Headings as claims, not topic labels:** "We will use Postgres, not Mongo" not "Database Choice." A claim built on a pointer is a topic label in disguise: "Decisions 5 and 6 pull in opposite directions" is grammatically a claim but gives the reader nothing to evaluate. State the substance instead: "Making the variants editor create drafts recreates the tangle we sequenced to avoid."
 - **The 3-5 rule:** No level has more than 5 sibling sections. More? Group under a higher-level governing idea.
 - **Concrete scenario (non-negotiable):** Pick one concrete scenario and walk through it in 3-5 sentences before generalizing. This is not optional — a design doc with zero concrete examples is incomplete. Place this walkthrough early, typically after the SCQA opening or at the start of the architecture section. "Here is a request during dual-write. The write lands on the old database first..."
 
@@ -64,11 +64,13 @@ Write in passes. Each pass has one lens. Do not try to do everything at once.
 
 ### Refine → Pass 4: Reader Calibration (Kill the Curse of Knowledge)
 
-**Goal:** Someone reading cold follows the argument and understands why decisions were made.
+**Goal:** Someone reading cold follows the argument and understands why decisions were made, without opening another document.
 
 - **State the reader's knowledge explicitly before this pass:** "The reader knows X, Y. The reader does NOT know A, B." Read the document as that reader.
 - **Every decision has a "why" and a "why not":** "We chose Postgres because... We rejected Mongo because..." A decision without rejected alternatives is a fact, not an argument.
-- **Define before use:** Jargon, acronyms, system names. "Obvious" to you is not obvious to a new team member.
+- **Define before use — terms and labels both:** Jargon, acronyms, and system names get defined on first use. So do labels that stand in for ideas: decision numbers ("Decision 5"), document names ("the v4 RFC"), milestone and track names, ticket ids ("GAL-1891"), review bodies ("the council"), artifacts ("the prototype"), and people's names (give the role). A label is a lookup key you hold and the reader does not. "Obvious" to you is not obvious to a new team member.
+- **Every load-bearing pointer gets replaced by its claim.** Sort each pointer into one of two kinds. *Navigational* pointers send the reader away for detail they do not need here — "Track A's sizing lives in the design doc" — and are fine. *Load-bearing* pointers are links in the argument: if the reader cannot resolve one, the reasoning breaks. Rewrite the sentence around the substance and delete the label. "Decision 5 conflicts with decision 6" becomes "Sequencing drafts-read before variants was meant to keep a variants rollback clear of unpublished drafts; making the variants editor create those drafts undoes that." If the substance will not fit in a clause, either it belongs in this document or the argument resting on it does not.
+- **The deletion test — the only way to pass the rule above.** Delete the label from your rewritten sentence. If the sentence still reads correctly and still makes its point, the substance is in the prose and you are done. If deleting it breaks the sentence, you appended a gloss instead of replacing the pointer, and the reader is still holding a lookup key. Both of these fail the test: "Decision 12 (Redis evicts under memory pressure) blocks this" and "the concerns in Decision 12, which are about Redis eviction". This passes: "Redis evicts keys under memory pressure and silently logs users out, which is why the admin console stayed on the database." **A person's name is a pointer too, and the easiest one to leave bare.** "Wei flagged this in review" tells the reader nothing about why that flag carries weight; "the engineer who owns the attribution model flagged this" does, and survives deleting the name. **Resolving pointers must not grow the document.** Annotating labels adds words while leaving the labels in place; replacing them spends those words on substance and pays for them out of the prose the labels were standing in for. A revision whose word count rose is annotation, not replacement.
 - **The "so what" test:** For each paragraph: "So what? Why should the reader care?" No answer? Cut it.
 - **One path through:** A reader should read start to finish without jumping around. Forward references signal structural problems.
 
@@ -96,6 +98,7 @@ Final line-level pass: given-new chains, active voice, clutter cuts. No structur
 | "Why did they choose this?" | Missing rationale | Pass 4: Add why/why-not to every decision |
 | "Too long, nothing to cut" | Curse of Knowledge | Pass 3: Cut 30%. If you can't, you're not trying |
 | "Reads like a textbook" | No concrete examples | Pass 3: Concrete instance before every abstraction |
+| "I'd need three other docs open to follow this" | Labels standing in for ideas the reader doesn't have | Pass 4: Replace each load-bearing pointer with its claim |
 | Document got longer after revision | Added detail instead of restructuring | Re-run relevant pass. Revise by subtraction. |
 | "I'll just add a paragraph to address that feedback" | Appending instead of restructuring | Pass 1: Where does this belong in the pyramid? |
 
@@ -106,6 +109,7 @@ Final line-level pass: given-new chains, active voice, clutter cuts. No structur
 - **Treating all information as equally important.** Six H2 sections with equal word count = no hierarchy.
 - **Writing for your current self instead of a future stranger.** The engineer joining in 6 months has zero context.
 - **Defending instead of arguing.** Listing reasons your approach is correct, without presenting alternatives you rejected. The latter is more persuasive.
+- **Naming an idea instead of stating it.** "Decision 5 and decision 6 conflict" reads as an argument to the author and as a lookup task to everyone else. Compression that leans on the reader's missing context is not compression. Cutting word count by turning claims into labels makes a document shorter and less understandable at the same time.
 
 ## Red Flags — Stop and Rewrite
 
@@ -117,5 +121,7 @@ Final line-level pass: given-new chains, active voice, clutter cuts. No structur
 - "The reader will figure it out" — you have Curse of Knowledge
 - You can't find a single concrete walkthrough anywhere in the document
 - **Word-count check:** Before declaring a revision complete, compare word count to the previous version. If it didn't shrink, you added scaffolding instead of replacing content. Go back and cut.
+- **Pointer audit:** Before declaring a revision complete, list every label and cross-reference in the document — decision numbers, doc and RFC names, milestone and track names, ticket ids, section marks, review bodies, people's names. For each, ask whether a reader who has read nothing else can follow the sentence containing it. Every "no" is a rewrite, not a link. A document that requires three other documents open is not finished, however short and well-structured it is.
+- **Both counts must drop.** Compare the revision to the previous version on two numbers: total words, and how many label references survive. Words down but labels flat means you compressed claims into shorthand. Labels annotated but words up means you glossed instead of replaced. A revision is done when both fell.
 
 **Any of these: identify which pass was skipped, redo that pass.**

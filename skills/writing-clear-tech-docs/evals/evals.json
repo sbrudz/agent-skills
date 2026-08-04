@@ -1,0 +1,41 @@
+{
+  "skill_name": "writing-clear-tech-docs",
+  "evals": [
+    {
+      "id": 0,
+      "eval_name": "audit-doc-that-passes-old-checks",
+      "prompt": "I revised this design doc yesterday and I think it's close. Review it and tell me whether it's ready to share with the team, or what still needs work.",
+      "expected_output": "The review identifies that the document refers to ideas by label rather than stating them (decision numbers, RFC names, ticket ids, review bodies, bare first names) and that a reader who has not read those artifacts cannot follow the argument. Should not report the document as ready.",
+      "files": ["evals/files/search-reindex-proposal.md"],
+      "known_weaknesses": [
+        "Weak discriminator: both pre-edit baselines caught the unresolved references unprompted (Opus flagged ~12, Sonnet 3). Asking 'is this ready to share' invites a problem hunt. The edit's edge here is prescribing rewrite-over-link and catching the heading, not catching the flaw at all.",
+        "Partial leakage on expectation 3: this fixture's section 1 heading ('Decisions 3 and 7 pull in opposite directions') closely mirrors the example SKILL.md names as the anti-pattern ('Decisions 5 and 6...'). Treat a pass on that expectation as weak evidence. Reword the fixture heading before relying on it, and re-baseline if you do."
+      ],
+      "expectations": [
+        "The review flags that the document refers to ideas by label or pointer rather than stating their substance",
+        "The review names at least three specific unresolved references from the document (e.g. 'Decision 3', 'the v2 RFC', 'SEARCH-412', 'the council', 'Dana', 'the mockup', 'Milestone 2')",
+        "The review identifies at least one section heading as unevaluable because it is built on a pointer (e.g. 'Decisions 3 and 7 pull in opposite directions')",
+        "The review does NOT conclude the document is ready to share as-is",
+        "The review distinguishes references that are fine to leave as links (pointers to detail the reader does not need here) from references that carry argument weight"
+      ]
+    },
+    {
+      "id": 1,
+      "eval_name": "revise-dense-draft-without-inheriting-pointers",
+      "prompt": "This draft is accurate but dense and hard to follow. Revise it.",
+      "expected_output": "A shorter, restructured document with claim headings and an SCQA opening, in which references to prior decisions, tickets, prior proposals, and people carry their substance inline rather than being named only. The revision must not achieve concision by compressing claims into labels.",
+      "files": ["evals/files/session-store-notes.md"],
+      "expectations": [
+        "The revision is shorter than the source document",
+        "Headings are claims rather than topic labels (source has 'Background', 'Problem', 'Options considered', 'Risks', 'Open questions')",
+        "The revision opens with a Situation-Complication-Question-Answer paragraph of at most 4 sentences",
+        "Every prior-decision reference carried into the revision states what that decision was, in the same sentence as the label (source has 'Decision 12', 'Decision 15')",
+        "Every ticket reference carried into the revision states what the ticket covers (source has 'PLAT-3390', 'PLAT-3401', 'PLAT-3402')",
+        "Every person named in the revision is given a role or the name is cut (source has bare 'Wei' and 'Priya')",
+        "Vague artifact references are either resolved or cut rather than carried over verbatim (source has 'the review', 'the incident review', 'the runbook', 'the v1 proposal')",
+        "The recommended option is stated up front rather than after the option enumeration",
+        "The revision does not introduce NEW unresolved labels that the source stated in full"
+      ]
+    }
+  ]
+}
