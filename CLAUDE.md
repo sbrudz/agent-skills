@@ -40,9 +40,31 @@ Bump the version string in **all three** locations — they must stay in sync:
 
 When running tests or work via background subagents, completion notifications are unreliable — agents may finish but never notify. If a test appears hung for more than a few minutes, check the output file directly (`ls -la /tmp/<expected-output-file>`) rather than waiting. The file existing means the agent completed silently.
 
+**But the file existing does not mean it is finished.** Agents rewrite their output several times; one run went 1400 → 1353 → 1288 words after the file first appeared. Measuring too early inverts conclusions. Prefer the completion notification, and when you must poll, check staleness numerically:
+
+```bash
+python3 -c "import time,os;print(time.time()-os.path.getmtime('FILE'))"
+```
+
+Do **not** use `find -newermt` for this. It is a GNU extension; this machine's `find` is `bfs`, which errors on it, and `$(...)` swallows the error into an empty string that reads as "stable" — so every check passes instantly and silently. Verify a measurement instrument before trusting a null result from it.
+
 ### Verify subagent self-reported metrics independently
 
 Subagents routinely misreport quantitative metrics about their own output (word counts, percentage reductions, file sizes). When a subagent claims "reduced by 55%," verify with `wc -w` or equivalent. Subagent self-reports are directional at best — never trust the specific numbers without independent verification.
+
+The converse also happens: a self-report can be right while your own number is wrong because you measured mid-write. When your figure contradicts the agent's, re-measure after settling before concluding the agent misreported.
+
+### A stated numeric limit becomes a spending target
+
+Any threshold a skill states will be read as a budget to consume. Told that "more than 5% longer is failure," a run landed at +4.9% and justified it as "at the ceiling the methodology allows" — having hit the same quality score at −0.6% one iteration earlier. When a rule needs a number for checkability, name the real target separately and deny the budget reading outright ("X is a boundary for detecting failure, not an allowance to spend").
+
+### Read tool calls, not tokens, to tell whether a rule is being followed
+
+Token counts do not indicate effort spent on compliance. Across twelve benchmark runs, Sonnet used *more* tokens than Opus in every single arm while applying fewer of the skill's rules. The informative signal was tool calls: as rules accumulated, Opus went 26 → 56 while Sonnet sat flat at 15–28, applying one rule cluster per run and alternating which. More rules answered with more prose instead of more verification means the rules are being read, not run.
+
+### Checklists must demand actions, not assertions
+
+A model that stops once its changes hang together will mark an assertion-style checklist complete without looking. "Check that the example is one real instance" gets a yes; "name the instance in one noun phrase, then list every property you attributed to it that the instance lacks" produces an artifact that cannot be faked. Converting a checklist from assertions to actions with written outputs moved Sonnet's tool calls 26 → 36 and got both rule clusters applied in one run for the first time. Pay for such a section by moving existing checks into it rather than restating them.
 
 ## Adding or Removing Skills
 
