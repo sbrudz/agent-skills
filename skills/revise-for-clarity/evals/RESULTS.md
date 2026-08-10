@@ -1,14 +1,136 @@
 # Eval results
 
-Two changes have been benchmarked against this skill. Newest first. All word and label
+Three changes have been benchmarked against this skill. Newest first. All word and label
 counts come from the committed scripts run against **settled** output files, never from a
 run's self-report — runs misreport their own numbers in both directions, and reading a file
-mid-write produced wrong figures in both benchmarks. See *Reproducing* for how to avoid it.
+mid-write produced wrong figures in all three benchmarks. See *Reproducing* for how to avoid it.
 
 Run outputs are not retained (they would ship to every plugin install). Counts are
 reproducible by re-running.
 
 ---
+
+# Spine, slot-claim headings, temporal state, input contract (2026-08-10)
+
+The change that also renamed the skill from `writing-clear-tech-docs` to `revise-for-clarity`
+and generalized it past technical documents. Under test:
+
+- A **Before Pass 1 — Choose the Spine** section: the passes are relative operators that
+  improve a structure and never choose one.
+- Headings carry a **slot and a claim**, replacing the previous claim-only rule. The old Red
+  Flag forbade the form that works.
+- Pass 2 gained the **typography** rule (bold has one level).
+- Pass 3 scoped the **30% target** to a bloated first draft and exempted **modal verbs as
+  bounds** from the hedge cut.
+- Pass 4 gained the **four states** (was / today / available-not-live / proposed) with the
+  audit in `references/temporal-clarity.md`.
+- The Revise section gained a **baseline-reset** clause and extended the narration ban to
+  **analysis** narration.
+- A new **input contract** with a named HALT: existing text only, explicit invocation only.
+
+**Baseline** = SKILL.md at v2.6.0 (git `7ef8dcb`, 3,751 words, named
+`writing-clear-tech-docs`). **Current** = 4,169 words + a 1,814-word reference file.
+
+12 arms: two new fixtures x {baseline, current} x {opus, sonnet}, plus a regression pair and
+an input-contract pair on current only. Planted traps are recorded in `files/TRAPS.md`,
+written before grading so no rubric was adjusted to fit a result.
+
+## Fixture A — the investigation spine (`files/build-cache-rollout.md`)
+
+1,307 words. Reproduces the profile of a real draft a reader called "incredibly hard to
+follow" *while fully complying with every pre-2.7.0 rule*: 10 sequentially numbered
+claim-only H2s, zero H3, 21 of 24 paragraphs opening bolded, 16 inline `[VERIFIED]` tags,
+0 slot+claim headings. Its walkthrough is deliberately correct, isolating the new rules from
+the v2.6.0 walkthrough rules. **The draft is already terse, so a 30% cut is the wrong
+operation** and a substantially shorter output is a failure.
+
+| arm | words | Δ | H2/H3 | numbered | slot+claim | inline tags | traps |
+|---|---|---|---|---|---|---|---|
+| baseline | Opus | 1288 | −1% | 4/9 | 0 | **0** | **15** | 6 / 8 |
+| baseline | Sonnet | 1125 | **−14%** | 5/8 | **5** | **1** | **16** | 4 / 8 |
+| current | Opus | 1287 | −2% | 6/8 | 0 | 12/14 | 0 | **8 / 8** |
+| current | Sonnet | 1323 | +1% | 6/8 | 0 | 5/14 | 0 | **8 / 8** |
+
+Both baselines failed the same two traps: they left 15 and 16 of the 16 verification tags in
+the prose, and produced 0 and 1 slot+claim headings, so a reader still cannot locate risks or
+alternatives. Baseline Sonnet additionally kept 5 numbered headings and cut 14% from a draft
+with nothing to cut. Both current arms produced conventional slot sets — Opus:
+`Design:` / `Alternatives considered:` / `Risks` / `Rollout:` / `Open questions` /
+`Appendix: evidence` — at parity length.
+
+**Opus reported landing its first pass at +14% and then cutting back below parity, citing the
+subtraction invariant.** That is the anti-Goodhart wording from the previous benchmark holding
+under a rule set that actively invites growth.
+
+## Fixture B — four states, not two (`files/outbox-delivery-migration.md`)
+
+898 words, almost no pointer labels, every falsifying fact in its own appendix: flag state (A),
+the 15th call site (B), measurement provenance (C), dates (D).
+
+| arm | words | Δ | risk state column | appendices kept | traps |
+|---|---|---|---|---|---|
+| baseline | Opus | 842 | −6% | ✗ `Risk \| Mitigation` | 1 of 4 | 8 / 11 |
+| baseline | Sonnet | 720 | **−20%** | ✗ `Risk \| Mitigation` | **0 of 4** | 6 / 11 |
+| current | Opus | 890 | −1% | ✓ `Risk \| State \| What to do` | 1 of 4 | **11 / 11** |
+| current | Sonnet | 963 | **+7%** | ✓ `Risk \| Status \| Mitigation` | **4 of 4** | 10 / 11 |
+
+Current Opus is the strongest arm in the benchmark. It promoted the buried correcting sentence
+into the summary ("nothing drains the table, so the inline call still delivers everything and
+the duplicate-send bug is still live"), gated the digest claim in the same sentence, attached
+the file path to today's state rather than to proposed behavior, and dated the measurement
+("a run on 2026-07-14 cost 14 writes per 200-row batch… the 1.4x once claimed has no basis").
+
+Baseline Sonnet is the clean counter-example on provenance: it kept "the dispatcher costs 14
+writes per 200-row batch" as a standing present-tense property, which is the measurement
+promoted to a property, exactly.
+
+## Findings worth keeping
+
+1. **The typography rule is not a discriminator.** Both baseline-A arms promoted real divisions
+   to subsections unprompted (H3 = 9 and 8). Recommendation 3 codifies behavior that already
+   happens rather than fixing a gap. Kept because it is cheap and because fixture B's Sonnet
+   arm did go flat (H3 = 0), but it earns no credit here.
+2. **The conventional-slot instruction contradicts the 3-5 rule, and the models were right to
+   ignore the 3-5 rule.** A standard RFC slot set is 6-8 sections. Three of five current arms
+   exceeded 5 top-level siblings (H2 = 6, 6, 7) while correctly adopting the slots. The skill
+   sanctions neither outcome. **Fix: exempt a genre's settled slot set from the 3-5 rule
+   explicitly.**
+3. **Deleting a false claim and scoping it are both passes, and scoping is better.** Both
+   baseline-B arms resolved the 240 ms overclaim by deleting it; both current arms kept it and
+   bounded it to what was measured. Deletion loses true information, so a trap "passed" by
+   deletion should be recorded separately from one passed by correction.
+4. **Both baseline-B arms destroyed the evidence appendices** to fund their cuts (1 of 4 and
+   0 of 4 surviving), while current-Sonnet preserved all four. The analysis-narration rule
+   redirects verification status *into* an appendix, and that is what protects it from the
+   compression pass.
+5. **The subtraction invariant held on Opus and slipped on Sonnet.** Opus cut back from +14% to
+   −2%; Sonnet landed at +7.2% on fixture B and conceded it had only "paid for [it] partly."
+   Growth pressure is what the new rules add, and Sonnet is where it leaks.
+6. **Sonnet's tool calls broke the flat band.** Across the entire v2.6.0 benchmark Sonnet sat at
+   15-28 tool calls regardless of how many rules it was given. Here: 23, 24, 28, 46. The 46 was
+   fixture B, the case with the most verification to do. The written-output checklist is
+   producing verification work on Sonnet rather than more prose about verification.
+7. **The input contract holds on both models.** Given raw notes and "Draft the RFC," both
+   halted and quoted the HALT rule back. Neither drafted. Note the limit of this result: the
+   skill was supplied directly as the arm's methodology, so this measures whether the contract
+   *governs behavior once loaded*, not whether the description prevents auto-triggering. That
+   second question needs an installed build.
+8. **The regression pair is clean.** On `folder-move-parity.md`, current Opus landed at 1288
+   words (−0.1%), matching the v2.6.0 record exactly, with every v2.6.0 behavior intact (union
+   walkthrough rebuilt, binary exclusion test fired, 7 labels down to 1) plus new temporal
+   marking on risk rows and `would` in Alternatives. Sonnet drifted to +3.5%, within the
+   boundary, while catching more (a miscount, a forward reference, an undefined term).
+
+## Known gaps
+
+- **Fixture B is a weak discriminator on Opus.** Baseline Opus caught 8 of 11 traps using only
+  the v2.6.0 claim-verification rule plus the appendix evidence. The temporal rules' measured
+  value on Opus is the *systematic* framing (a state column, an available-not-live section)
+  rather than catching claims Opus would otherwise miss. On Sonnet the gap is real (6 → 10).
+- **Trap B8** (phase-anchoring "both paths write to the same table") is ungradable: every arm
+  deleted or rewrote the sentence, so no arm was ever tested on it.
+- **`should`-as-state-marker (B9) and the unmerged limiter (B10)** were verified on the current
+  arms only; the baseline arms restructured those sentences away before the check could apply.
 
 # Walkthrough construction + anti-overpromise (2026-08-04)
 
@@ -233,6 +355,7 @@ explicitly rejects) and missed the heading. Regression-check value going forward
 
 ```bash
 # 1. snapshot the baseline skill (use the tag the change was made against)
+# the skill was named writing-clear-tech-docs at and before v2.6.0
 git show v2.5.0:skills/writing-clear-tech-docs/SKILL.md > /tmp/baseline-SKILL.md
 
 # 2. for each eval in evals.json, run 4 configs: {baseline, current} x {opus, sonnet}.

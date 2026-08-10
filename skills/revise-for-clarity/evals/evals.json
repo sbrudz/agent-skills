@@ -1,0 +1,140 @@
+{
+  "skill_name": "revise-for-clarity",
+  "evals": [
+    {
+      "id": 0,
+      "eval_name": "audit-doc-that-passes-old-checks",
+      "prompt": "I revised this design doc yesterday and I think it's close. Review it and tell me whether it's ready to share with the team, or what still needs work.",
+      "expected_output": "The review identifies that the document refers to ideas by label rather than stating them (decision numbers, RFC names, ticket ids, review bodies, bare first names) and that a reader who has not read those artifacts cannot follow the argument. Should not report the document as ready.",
+      "files": [
+        "evals/files/search-reindex-proposal.md"
+      ],
+      "known_weaknesses": [
+        "Weak discriminator: both pre-edit baselines caught the unresolved references unprompted (Opus flagged ~12, Sonnet 3). Asking 'is this ready to share' invites a problem hunt. The edit's edge here is prescribing rewrite-over-link and catching the heading, not catching the flaw at all.",
+        "Partial leakage on expectation 3: this fixture's section 1 heading ('Decisions 3 and 7 pull in opposite directions') closely mirrors the example SKILL.md names as the anti-pattern ('Decisions 5 and 6...'). Treat a pass on that expectation as weak evidence. Reword the fixture heading before relying on it, and re-baseline if you do."
+      ],
+      "expectations": [
+        "The review flags that the document refers to ideas by label or pointer rather than stating their substance",
+        "The review names at least three specific unresolved references from the document (e.g. 'Decision 3', 'the v2 RFC', 'SEARCH-412', 'the council', 'Dana', 'the mockup', 'Milestone 2')",
+        "The review identifies at least one section heading as unevaluable because it is built on a pointer (e.g. 'Decisions 3 and 7 pull in opposite directions')",
+        "The review does NOT conclude the document is ready to share as-is",
+        "The review distinguishes references that are fine to leave as links (pointers to detail the reader does not need here) from references that carry argument weight"
+      ]
+    },
+    {
+      "id": 1,
+      "eval_name": "revise-dense-draft-without-inheriting-pointers",
+      "prompt": "This draft is accurate but dense and hard to follow. Revise it.",
+      "expected_output": "A shorter, restructured document with claim headings and an SCQA opening, in which references to prior decisions, tickets, prior proposals, and people carry their substance inline rather than being named only. The revision must not achieve concision by compressing claims into labels.",
+      "files": [
+        "evals/files/session-store-notes.md"
+      ],
+      "expectations": [
+        "The revision is shorter than the source document",
+        "Headings are claims rather than topic labels (source has 'Background', 'Problem', 'Options considered', 'Risks', 'Open questions')",
+        "The revision opens with a Situation-Complication-Question-Answer paragraph of at most 4 sentences",
+        "Every prior-decision reference carried into the revision states what that decision was, in the same sentence as the label (source has 'Decision 12', 'Decision 15')",
+        "Every ticket reference carried into the revision states what the ticket covers (source has 'PLAT-3390', 'PLAT-3401', 'PLAT-3402')",
+        "Every person named in the revision is given a role or the name is cut (source has bare 'Wei' and 'Priya')",
+        "Vague artifact references are either resolved or cut rather than carried over verbatim (source has 'the review', 'the incident review', 'the runbook', 'the v1 proposal')",
+        "The recommended option is stated up front rather than after the option enumeration",
+        "The revision does not introduce NEW unresolved labels that the source stated in full"
+      ]
+    },
+    {
+      "id": 2,
+      "eval_name": "revise-doc-with-composite-walkthrough-and-false-premise",
+      "prompt": "This draft is accurate but dense and hard to follow. Revise it.",
+      "expected_output": "A revision whose walkthrough runs one instance that could actually exist, leads with the cross-client comparison the proposal is about, and gets the largest section budget. The revision must also catch that the trash-move exclusion contradicts the appendix, drop the symmetry claim resting on it, bound the reword so it does not require the archiving the document puts out of scope, and cut the revision-narration section.",
+      "files": [
+        "evals/files/folder-move-parity.md"
+      ],
+      "notes": "Fixture carries zero external pointer labels, so this case isolates the walkthrough and anti-overpromise rules from the v2.5.0 pointer rules. Every fact needed to falsify the trash-move claim is in the document's own appendix.",
+      "known_weaknesses": [
+        "The soft-delete overpromise did not transfer to this domain. In the motivating real document the promise was 'preserve the variant row through structural edits', and a structural edit destroys combinations by definition, so an unbounded promise required soft delete. A folder MOVE never destroys a file row, so 'through every folder operation' needs no archiving and the original form of expectation 9 had no valid derivation. Rewritten to target the collision the fixture does support: the retention test that deliberately asserts the desktop trash restart. A future fixture wanting the archiving trap must use an operation that destroys rows, such as deleting a folder and keeping one child.",
+        "Expectation 5 ('no other section outweighs the walkthrough') is sensitive to how a revision nests headings. Measure with section_report.py, which reports H3 separately without folding into the parent H2; an earlier H2-only version of that script scored a false pass for a run that nested an unrelated subsection under the walkthrough heading while leaving the walkthrough itself at 87 words."
+      ],
+      "expectations": [
+        "The walkthrough runs a single instance that could really exist, rather than one file carrying cell-anchored comment threads AND a transcoded preview AND countersignature blocks",
+        "Properties that vary by file type appear as separate short cases, each self-consistent, rather than merged into one example",
+        "The desktop-versus-web comparison leads the walkthrough instead of arriving in its closing sentence ('The web app does not do this.')",
+        "The walkthrough gets a larger share of the word budget than in the source, where it is 92 of 1289 words",
+        "No other section outweighs the walkthrough in the revision",
+        "The revision identifies that 'Moving a folder into the trash is already excluded by the policy's closing sentence' is unsupported, because the appendix shows the two clients behave differently on a trash move so 'keeps today's behavior' cannot name one behavior",
+        "The disputed set grows from two moves to three, or the ambiguity of the clause is flagged as an open question that decides the count",
+        "The claim that 'the objection and the remaining scope cover exactly the same two moves' is deleted rather than footnoted, since it rests on the false exclusion",
+        "Reword 1's unbounded 'preserve the file row through every folder operation' is either bounded or its collision with a documented deliberate behavior is named (the retention test that asserts the desktop trash restart)",
+        "The 'What changed since the last draft' section is removed rather than reworded",
+        "The revision does not grow overall without naming what the growth bought"
+      ]
+    },
+    {
+      "id": 3,
+      "eval_name": "halt-when-no-text-supplied",
+      "prompt": "I need to write up the session-store migration for the team. Here are my notes: Redis evicts under memory pressure, we lose sessions, the admin console already moved to the database, and mobile still uses Redis. Draft the RFC.",
+      "expected_output": "The skill declines to draft from notes and asks which existing text to revise, or the skill does not engage at all and the request is handled as ordinary drafting. Either is a pass. A failure is the skill engaging its four passes to produce a new document from these notes, which is the scope the input contract excludes.",
+      "files": [],
+      "notes": "Negative-trigger case for the invoke-only input contract. No frontmatter field gates auto-triggering, so this measures whether the description's gate holds in practice. Run this case without an explicit skill invocation in the prompt.",
+      "expectations": [
+        "No revised or drafted RFC is produced from the notes alone",
+        "The response either asks which existing text to revise or handles the request without invoking the revision passes",
+        "The four passes are not applied to freshly authored prose"
+      ]
+    },
+    {
+      "id": 4,
+      "eval_name": "restructure-investigation-spine-without-compressing",
+      "prompt": "This draft is accurate but hard to follow. Revise it.",
+      "expected_output": "A revision that replaces the investigation spine with the genre's conventional sections (context, proposal, alternatives, risks, rollout, open questions), gives each heading a slot AND a claim, introduces subsections so hierarchy stops being carried by bold, moves the verification tags out of the prose into an evidence appendix, and drops the pass-counting heading and the 'Start here' closer. Crucially it must NOT hit a 30% cut: the draft is already terse, so compression is the wrong operation and a substantially shorter output is a failure even if well written.",
+      "files": [
+        "evals/files/build-cache-rollout.md"
+      ],
+      "notes": "Reproduces the profile of the real v3 draft that was 'incredibly hard to follow' while fully complying with every pre-2.7.0 rule: 10 sequentially numbered claim-only H2s, zero H3, 21/24 bolded lead-in paragraphs, 16 inline verification tags, 0 slot+claim headings. The walkthrough in section 7 is deliberately correct (one real instance) so this case isolates the spine, slot-claim, typography, and analysis-narration rules from the v2.6.0 walkthrough rules. Grade with structure_report.py.",
+      "expectations": [
+        "Conventional slot names appear in the headings, so a reader can locate risks, alternatives, and rollout",
+        "Headings carry a slot AND a claim rather than a claim alone",
+        "Subsections (H3) are introduced; the flat all-H2 list is broken up",
+        "Bolded lead-in paragraphs drop substantially; most paragraphs start unbolded",
+        "Sibling sections at the top level are grouped to 5 or fewer, and sequential numbering is not treated as grouping",
+        "The pass-counting heading ('Four more passes through the design') is gone",
+        "The 'Start here' closer is gone, and its open questions are promoted to their own slot",
+        "Inline [VERIFIED]/[UNMEASURED] tags move to an evidence appendix rather than sitting in the prose",
+        "The revision does not compress by ~30%; it recognises the draft is terse and that restructuring, not cutting, is the fix",
+        "Risks scattered across sections 5, 6, and 8 are collected where a reader expects them"
+      ],
+      "known_weaknesses": [
+        "The typography rule (bolded lead-ins, Pass 2) is not a discriminator on this fixture. Both baseline arms promoted real divisions to subsections unprompted, reaching H3=9 and H3=8 from the fixture's H3=0. The rule is retained because fixture B's current-Sonnet arm did go flat (H3=0), but it earns no credit here.",
+        "This fixture exposed a conflict between 'adopt the genre's conventional sections wholesale' and the 3-5 rule: a standard RFC slot set is 6 to 8 sections. Three of five current arms exceeded 5 top-level siblings while correctly adopting the slots. SKILL.md now exempts a settled slot set from the 3-5 rule; re-running this case should show H2 counts of 6 to 7 no longer counting as a violation."
+      ]
+    },
+    {
+      "id": 5,
+      "eval_name": "separate-shipped-from-proposed",
+      "prompt": "This draft is accurate but dense and hard to follow. Revise it.",
+      "expected_output": "A revision in which every sentence asserting system behavior is placeable in one state. It must catch that the digest worker and retry policy are described in present tense while sitting behind an off flag, that the summary credits the whole design with a latency win measured from writes alone, that the duplicate-send bug is described as removed entirely when one call site still sends inline, that a file path is cited next to proposed behavior, that a one-run staging measurement is stated as a standing property, and that the correcting sentence ('the dispatcher is a no-op') is buried at the end of Rollout. Status and body tense must agree.",
+      "files": [
+        "evals/files/outbox-delivery-migration.md"
+      ],
+      "notes": "Every falsifying fact is in the document's own appendices: flag state (A), the 15th call site (B), measurement provenance (C), dates (D). Carries almost no pointer labels so it isolates the temporal rules. Grade with tense_report.py.",
+      "expectations": [
+        "The digest worker's outbox path is no longer described in present tense as today's behavior; its gate appears in the same sentence",
+        "The retry policy and dispatcher batch behavior are marked as available-not-live or proposed rather than current",
+        "The summary's 'removed the duplicate-send class of bug entirely' is corrected: 14 of 15 call sites, with the legacy invoice mailer named as still inline",
+        "The 240 ms latency claim is attributed to outbox writes only, not to the full design",
+        "The file path is not cited next to proposed dispatcher behavior, or the sentence is recast to name the change against today's behavior",
+        "The 14-writes-per-batch figure is stated as a dated staging measurement rather than a standing property",
+        "'Both paths write to the same table' names the phase whose window it holds in",
+        "The 'we should route webhooks' sentence picks will/would/does instead of leaving should to mark state",
+        "'the dispatcher is a no-op' is promoted out of the last line of Rollout, since it governs how the whole document reads",
+        "The Status field and the body's tense agree, or the disagreement is called out",
+        "Risk rows distinguish risks that exist today from risks the change introduces",
+        "The undated 'used to be synchronous' gains its date, or is paired with what runs now"
+      ],
+      "known_weaknesses": [
+        "Weak discriminator on Opus. Baseline Opus caught 8 of 11 traps using only the v2.6.0 claim-verification rule plus this fixture's appendix evidence. The temporal rules' measured value on Opus is the systematic framing (a State column on risks, an available-not-live section) rather than catching claims Opus would otherwise miss. The Sonnet gap is real: 6 of 11 baseline to 10 of 11 current.",
+        "Trap B8 (phase-anchoring 'both paths write to the same table') is ungradable. Every one of the four arms deleted or rewrote that sentence, so no arm was tested on it. A future fixture needs the transitional claim embedded somewhere a revision will keep.",
+        "Traps B9 (should-as-state-marker) and B10 (the unmerged rate limiter) were verified on the current arms only. Both baseline arms restructured those sentences away before the check could apply, so they are scored as untested rather than passed."
+      ]
+    }
+  ]
+}

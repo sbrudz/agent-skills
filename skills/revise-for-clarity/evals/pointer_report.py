@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Pointer audit: extract every label-style reference with its containing sentence.
 
-Grades the writing-clear-tech-docs evals, and reproduces the "external labels" column
+Grades the revise-for-clarity evals, and reproduces the "external labels" column
 in RESULTS.md. Usage:
 
     python3 pointer_report.py <file.md> [<file.md> ...]
